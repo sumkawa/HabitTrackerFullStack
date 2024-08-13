@@ -1,0 +1,40 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.header {
+  position: relative;
+  display: inline;
+  padding: 1rem 2rem;
+}
+
+.title {
+  --on-background: #f2f2f2;
+  background-image: linear-gradient(
+    to bottom,
+    var(--on-background) 50%,
+    transparent
+  );
+  letter-spacing: -1px;
+  text-shadow: 0 5px 15px rgba(0, 87, 255, 0.3),
+    0 -5px 15px rgba(14, 176, 197, 0.3), 0 -5px 25px rgba(255, 255, 255, 0.3);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 64px;
+  line-height: 72px;
+  position: relative;
+  z-index: 3;
+}
+
+.subtitle {
+  color: var(--on-background);
+  font-size: 24px;
+  line-height: 32px;
+  margin-top: 0.5rem;
+}

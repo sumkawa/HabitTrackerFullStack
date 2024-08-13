@@ -1,0 +1,14 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 6rem;
+  min-height: 100vh;
+  scrollbar-color: var(--color-border) black;
+  scrollbar-width: thin;
+}
+.span {
+  font-size: 2rem;
+  font-weight: normal;
+}

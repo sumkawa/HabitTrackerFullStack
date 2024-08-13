@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  border: none;
+  border-radius: 1000px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.wrapper:hover {
+  transition: transform 0.2s ease;
+  transform: scale(1.2);
+}
