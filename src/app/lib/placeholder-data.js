@@ -1,13 +1,15 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const users = [
   {
-    uuid: '123e4567-e89b-12d3-a456-426614174000',
+    uuid: uuidv4(),
     name: 'John Doe',
     email: 'john.doe@example.com',
     password: 'password123',
     username: 'johnnyD',
   },
   {
-    uuid: '123e4567-e89b-12d3-a456-426614174001',
+    uuid: uuidv4(),
     name: 'Jane Smith',
     email: 'jane.smith@example.com',
     password: 'securePass456',
@@ -15,24 +17,25 @@ const users = [
   },
 ];
 
+// Ensure that the tags reference valid user UUIDs from the users array
 const tags = [
   {
-    user_uuid: '123e4567-e89b-12d3-a456-426614174000',
+    user_uuid: users[0].uuid, // References John Doe's UUID
     tag_name: 'Fitness',
     tag_color: '#FF5733',
   },
   {
-    user_uuid: '123e4567-e89b-12d3-a456-426614174000',
+    user_uuid: users[0].uuid, // References John Doe's UUID
     tag_name: 'Learning',
     tag_color: '#337AFF',
   },
   {
-    user_uuid: '123e4567-e89b-12d3-a456-426614174001',
+    user_uuid: users[1].uuid, // References Jane Smith's UUID
     tag_name: 'Wellness',
     tag_color: '#FFD700',
   },
   {
-    user_uuid: '123e4567-e89b-12d3-a456-426614174001',
+    user_uuid: users[1].uuid, // References Jane Smith's UUID
     tag_name: 'Health',
     tag_color: '#32CD32',
   },
@@ -40,14 +43,14 @@ const tags = [
 
 const habits = [
   {
-    uuid: 'a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6',
-    user_uuid: '123e4567-e89b-12d3-a456-426614174000',
+    uuid: uuidv4(),
+    user_uuid: users[0].uuid, // References John Doe's UUID
     name: 'Morning Exercise',
     streak: 10,
     date_started: '2024-07-01',
     last_day_logged: '2024-07-10',
     behavior: 'Jogging for 30 minutes',
-    time: '6:00 AM',
+    time: '06:00:00', // Valid time format
     location: 'Neighborhood park',
     tag_name: 'Fitness',
     identity: 'An active person',
@@ -66,14 +69,14 @@ const habits = [
     ],
   },
   {
-    uuid: 'b2c3d4e5-f6g7-h8i9-j0k1-l2m3n4o5p6a7',
-    user_uuid: '123e4567-e89b-12d3-a456-426614174000',
+    uuid: uuidv4(),
+    user_uuid: users[0].uuid, // References John Doe's UUID
     name: 'Reading',
     streak: 5,
     date_started: '2024-07-05',
     last_day_logged: '2024-07-10',
     behavior: 'Reading 20 pages of a book',
-    time: '8:00 PM',
+    time: '20:00:00', // Valid time format
     location: 'Living room',
     tag_name: 'Learning',
     identity: 'A knowledgeable person',
@@ -87,8 +90,8 @@ const habits = [
     ],
   },
   {
-    uuid: 'c3d4e5f6-g7h8-i9j0-k1l2-m3n4o5p6a7b8',
-    user_uuid: '123e4567-e89b-12d3-a456-426614174001',
+    uuid: uuidv4(),
+    user_uuid: users[1].uuid, // References Jane Smith's UUID
     name: 'Meditation',
     streak: 20,
     description:
@@ -96,7 +99,7 @@ const habits = [
     date_started: '2024-05-20',
     last_day_logged: '2024-07-10',
     behavior: 'meditate',
-    time: '7:00 AM',
+    time: '07:00:00', // Valid time format
     location: 'home office',
     tag_name: 'Wellness',
     identity: 'A mindful person',
@@ -124,14 +127,14 @@ const habits = [
     ],
   },
   {
-    uuid: 'd4e5f6g7-h8i9-j0k1-l2m3-n4o5p6a7b8c9',
-    user_uuid: '123e4567-e89b-12d3-a456-426614174001',
+    uuid: uuidv4(),
+    user_uuid: users[1].uuid, // References Jane Smith's UUID
     name: 'Water Intake',
     streak: 15,
     date_started: '2024-06-25',
     last_day_logged: '2024-07-10',
     behavior: 'drink 8 glasses of water',
-    time: 'various times in the day',
+    time: null, // Set to null because it's not a specific time
     location: 'various locations',
     tag_name: 'Health',
     identity: 'A hydrated person',
