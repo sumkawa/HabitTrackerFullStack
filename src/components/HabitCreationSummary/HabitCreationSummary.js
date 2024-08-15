@@ -33,7 +33,6 @@ function HabitCreationSummary({
     return stringTime;
   }
 
-  console.log(tags);
   return (
     <div className='box five'>
       <h1 className='animate-character-second'>Finally - identity</h1>

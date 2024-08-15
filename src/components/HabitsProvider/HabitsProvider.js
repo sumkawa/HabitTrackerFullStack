@@ -13,17 +13,14 @@ function HabitsProvider({ habits, tags, params }) {
   });
   const [checked, setChecked] = React.useState(initialCheckBoxes);
   return (
-    <HabitContext.Provider value={{ habits, tags, params }}>
+    <HabitContext.Provider
+      value={{ habits, tags, params, checked, setChecked }}
+    >
       <div className='habitsContainer'>
         <span className='habitsContainerHeroText'>My Habits</span>
         <div>
           {habits.map((habit, index) => (
-            <HabitCard
-              key={`${habit}-${index}`}
-              habitObject={habit}
-              checked={checked}
-              setChecked={setChecked}
-            />
+            <HabitCard key={`${habit}-${index}`} habitObject={habit} />
           ))}
         </div>
         <span className='add-habit'>

@@ -5,7 +5,6 @@ import './styles.css';
 
 const HabitCalendar = ({ values, startDate }) => {
   const today = new Date();
-  console.log(new Date(startDate));
   return (
     <div className='CalendarContainer'>
       <CalendarHeatmap

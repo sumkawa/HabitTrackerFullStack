@@ -7,10 +7,12 @@ import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import { motion } from 'framer-motion';
 import CircularCheckbox from '../CircularCheckbox';
+import LabelButton from '../LabelButton';
 import { HabitContext } from '../HabitsProvider';
 import './styles.css';
 
-function HabitCard({ habitObject, checked, setChecked }) {
+function HabitCard({ habitObject }) {
+  const { checked, setChecked } = React.useContext(HabitContext);
   const [modalOpen, setModalOpen] = useState(false);
   const { tags } = React.useContext(HabitContext);
   const tag = tags.find((tag) => tag.tag_name === habitObject.tag_name);
@@ -43,18 +45,7 @@ function HabitCard({ habitObject, checked, setChecked }) {
                   <p>{habitObject.streak}</p>
                 </div>
               </div>
-              <span
-                style={{
-                  backgroundColor: 'var(--color-widget-background)',
-                  color: `${tag.tag_color}`,
-                  fontSize: '1rem',
-                  fontWeight: '500',
-                  borderRadius: '0.25rem',
-                  padding: '0.125rem 0.625rem',
-                }}
-              >
-                {tag.tag_name}
-              </span>
+              <LabelButton tag={tag} />
               <p className='card-description'>
                 <span>I will </span>
                 <span className='behavior'>{habitObject.behavior}</span>
@@ -88,7 +79,7 @@ function HabitCard({ habitObject, checked, setChecked }) {
             >
               <Dialog.Close asChild>
                 <button className='header-exit'>
-                  <ArrowLeftIcon />
+                  <ArrowLeftIcon width='35' height='35' />
                 </button>
               </Dialog.Close>
               <Dialog.Title className='DialogTitle'>

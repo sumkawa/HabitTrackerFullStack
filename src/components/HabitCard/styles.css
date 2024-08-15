@@ -12,10 +12,11 @@
 .outline {
   padding: 5px 6px;
   border-radius: 26px;
-  border: 0.5px solid #5f606a;
+  border: 0.5px solid var(--color-border);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   max-width: 554px;
   margin: 15px 0px;
+  background-color: var(--color-widget-background);
 }
 .behavior {
   color: var(--color-text);

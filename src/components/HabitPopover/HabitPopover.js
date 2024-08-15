@@ -37,7 +37,6 @@ function HabitPopover() {
   const wrapperRef = React.useRef(null);
 
   const { params, tags } = React.useContext(HabitContext);
-  console.log(params, NEXT_CACHE_TAGS_HEADER);
 
   const scrollNext = () => {
     if (wrapperRef.current) {
