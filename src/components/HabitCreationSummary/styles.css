@@ -130,7 +130,7 @@
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  line-height: 72px;
+  /* line-height: 72px; */
   position: relative;
   z-index: 3;
 }
@@ -147,7 +147,7 @@
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  line-height: 72px;
+  /* line-height: 72px; */
   position: relative;
   z-index: 3;
 }
@@ -164,10 +164,28 @@
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  line-height: 72px;
+  /* line-height: 72px; */
   position: relative;
   z-index: 3;
 }
+
+.identity-text {
+  --on-background: #ffffff;
+  background-image: linear-gradient(
+    to bottom,
+    var(--on-background) 100%,
+    transparent
+  );
+  letter-spacing: -1px;
+  text-shadow: rgba(255, 255, 255, 0.8) 0px 0px 3px;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* line-height: 72px; */
+  position: relative;
+  z-index: 3;
+}
+
 .confirmation-text {
   font-size: 3rem;
 }

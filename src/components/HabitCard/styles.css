@@ -11,7 +11,7 @@
 
 .outline {
   padding: 5px 6px;
-  border-radius: 24px;
+  border-radius: 26px;
   border: 0.5px solid #5f606a;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   max-width: 554px;
@@ -204,6 +204,12 @@
   opacity: 0.5;
 }
 
+.habit-card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .bg-green-box,
 .bg-white-box,
 .bg-yellow-box,
@@ -254,6 +260,28 @@
   font-style: normal;
   font-size: 1.8rem;
   padding-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.card-title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-streak {
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  line-height: 40px;
+  font-style: normal;
+  font-size: 1.8rem;
+  padding-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .card-description {
@@ -300,12 +328,11 @@ input {
 
 .DialogContent {
   max-width: 500px;
-  height: auto;
   background: var(--color-widget-background);
   border-radius: 10px;
   padding: 20px;
   width: 60%;
-  min-height: 100%;
+  min-height: 40%;
   border: 1px solid var(--color-border);
   position: fixed;
 }

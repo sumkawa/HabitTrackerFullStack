@@ -131,7 +131,7 @@
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  line-height: 72px;
+  /* line-height: 72px; */
   position: relative;
   z-index: 3;
 }
@@ -148,7 +148,7 @@
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  line-height: 72px;
+  /* line-height: 72px; */
   position: relative;
   z-index: 3;
 }
@@ -165,7 +165,7 @@
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  line-height: 72px;
+  /* line-height: 72px; */
   position: relative;
   z-index: 3;
 }

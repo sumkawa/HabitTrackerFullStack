@@ -2,9 +2,9 @@
 import React from 'react';
 import { Sun, Moon } from 'react-feather';
 import Cookie from 'js-cookie';
+import { motion } from 'framer-motion';
 
 import { LIGHT_COLORS, DARK_COLORS } from '@/constants';
-
 import styles from './DarkLightToggle.module.css';
 
 function DarkLightToggle({ initialTheme }) {
@@ -38,13 +38,32 @@ function DarkLightToggle({ initialTheme }) {
   }
 
   return (
-    <button className={styles.wrapper} onClick={handleClick}>
+    <motion.button
+      className={styles.wrapper}
+      onClick={handleClick}
+      whileTap={{ rotate: 360 }} // Rotate the icon 360 degrees when clicked
+      transition={{ duration: 0.5 }} // Adjust the duration of the animation
+    >
       {theme === 'light' ? (
-        <Sun className={styles.icon} size='1.5rem' />
+        <motion.div
+          key='sun' // Use a unique key to trigger the animation when the icon changes
+          initial={{ rotate: 0 }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Sun className={styles.icon} size='1.5rem' />
+        </motion.div>
       ) : (
-        <Moon className={styles.icon} size='1.5rem' />
+        <motion.div
+          key='moon'
+          initial={{ rotate: 0 }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Moon className={styles.icon} size='1.5rem' />
+        </motion.div>
       )}
-    </button>
+    </motion.button>
   );
 }
 

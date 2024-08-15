@@ -10,6 +10,9 @@ function HabitCreationSummary({
   handleSubmit,
   scrollLast,
   setIsAm,
+  identity,
+  setIdentity,
+  tags,
 }) {
   function isAmOrPm(dateString) {
     const hour = Number(dateString.slice(0, 2));
@@ -30,19 +33,61 @@ function HabitCreationSummary({
     return stringTime;
   }
 
+  console.log(tags);
   return (
     <div className='box five'>
-      <h1 className='animate-character-second'>{habitTitle}</h1>
-      <h2 className='secondary-text'>How's it look?</h2>
+      <h1 className='animate-character-second'>Finally - identity</h1>
+      <h2 className='secondary-text'>
+        Habits are bricks that build the identity you strive towards.
+      </h2>
       <div className='input-paragraph'>
         <div>
-          I will <span className='behavior-text'>{behavior}</span> at{' '}
-          <span className='time-text'>
-            {`${convertTwentyFourToString(time, setIsAm)} ${isAmOrPm(time)}`}
-          </span>{' '}
-          in <span className='location-text'>{location}</span>
+          {identity === '' ? (
+            <span>
+              I will <span className='behavior-text'>{behavior}</span> at{' '}
+              <span className='time-text'>
+                {`${convertTwentyFourToString(time, setIsAm)} ${isAmOrPm(
+                  time
+                )}`}
+              </span>{' '}
+              in <span className='location-text'>{location}</span> to become
+              [identity]
+            </span>
+          ) : (
+            <span>
+              I will <span className='behavior-text'>{behavior}</span> at{' '}
+              <span className='time-text'>
+                {`${convertTwentyFourToString(time, setIsAm)} ${isAmOrPm(
+                  time
+                )}`}
+              </span>{' '}
+              in <span className='location-text'>{location}</span> to become{' '}
+              <span className='identity-text'>{identity}</span>
+            </span>
+          )}
         </div>
       </div>
+      <h3>Tag selection</h3>
+      <h3>
+        <div className='form__group__paragraph field'>
+          <input
+            type='input'
+            className='form__field__paragraph'
+            placeholder='an athlete'
+            name='identity'
+            id='identity'
+            spellCheck={false}
+            required
+            value={identity}
+            onChange={(event) => {
+              setIdentity(event.target.value);
+            }}
+          />
+          <label htmlFor='name' className='form__label__paragraph'>
+            Identity
+          </label>
+        </div>
+      </h3>
       <h3 className='submit-button-container'>
         <form onSubmit={handleSubmit}>
           <input

@@ -1,0 +1,13 @@
+.habitsContainerHeroText {
+  text-shadow: rgba(255, 255, 255, 0.2) 0px 0px 4px;
+  font-size: 2.5rem;
+  text-align: center;
+}
+.habitsContainer {
+  border: 1px solid var(--color-border);
+  border-radius: 25px;
+  width: fit-content;
+  padding: 20px;
+  margin: 20px 0;
+  align-items: center;
+}
