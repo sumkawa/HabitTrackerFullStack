@@ -56,6 +56,7 @@
   position: relative;
   padding: 15px 0 0;
   width: 50%;
+  margin-top: 50px;
 }
 
 .form__field__paragraph {
@@ -188,4 +189,13 @@
 
 .confirmation-text {
   font-size: 3rem;
+}
+
+.submit-button-container {
+  padding: 30px auto 0px auto;
+  margin: 30px auto 0px auto;
+}
+
+.tag-selection {
+  margin-top: 30px;
 }

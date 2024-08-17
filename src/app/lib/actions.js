@@ -30,13 +30,13 @@ export async function createHabit(formData) {
     dates_repeated: formData.get('dates_repeated'),
   });
 
-  const lastDayLogged = new Date().toISOString().split('T')[0];
   console.log('user id:', habitData.user_uuid);
+
   await sql`
     INSERT INTO habits (
       uuid, user_uuid, name, streak, date_started, last_day_logged, behavior, time, location, tag_name, identity, days_of_week, dates_repeated
     ) VALUES (
-      gen_random_uuid(), ${habitData.user_uuid}, ${habitData.name}, 0, ${lastDayLogged}, ${lastDayLogged},
+      gen_random_uuid(), ${habitData.user_uuid}, ${habitData.name}, 0, CURRENT_DATE, NULL,
       ${habitData.behavior}, ${habitData.time}, ${habitData.location}, ${habitData.tag_name}, ${habitData.identity}, ${habitData.days_of_week},
       ${habitData.dates_repeated}
     )

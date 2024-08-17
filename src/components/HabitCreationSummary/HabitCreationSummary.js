@@ -112,7 +112,7 @@ function HabitCreationSummary({
           )}
         </div>
       </div>
-      <h3>Tag selection</h3>
+      <h3 className='tag-selection'>Tag selection</h3>
       <h3>
         <div className='form__group__paragraph field'>
           <input

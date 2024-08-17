@@ -65,9 +65,9 @@ body {
 .PopoverDialogContent {
   min-width: 375px;
   max-width: 60%;
+  height: fit-content;
   background: var(--color-widget-background);
   border-radius: 10px;
-  width: 80%;
   border: 1px solid var(--color-border);
   position: relative;
   top: 20px;
