@@ -16,7 +16,6 @@
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   max-width: 554px;
   margin: 15px 0px;
-  background-color: var(--color-widget-background);
 }
 .behavior {
   color: var(--color-text);
@@ -163,6 +162,7 @@
   max-width: 550px;
   width: 100%;
   margin-inline: auto;
+  border: 0;
   height: fit-content;
 }
 
@@ -308,7 +308,7 @@
   text-align: left; /* Aligns the button text to the left */
 }
 
-/* MODAL */
+/* MODAL  */
 button,
 fieldset,
 input {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-function CircularCheckbox({ id, checked, setChecked }) {
+function CircularCheckbox({ id, checked, setChecked, onClick, disabled }) {
   return (
     <div className='round'>
       <input
@@ -10,7 +10,11 @@ function CircularCheckbox({ id, checked, setChecked }) {
         checked={checked[id] === true}
         onChange={(event) => {
           setChecked({ ...checked, [id]: event.target.checked });
+          if (onClick) {
+            onClick(event);
+          }
         }}
+        disabled={disabled}
       />
       <label htmlFor={`check-habit-${id}`} />
     </div>

@@ -1,5 +1,8 @@
 import React from 'react';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
+import { createHabit } from '@/app/lib/actions';
+import { HabitContext } from '../HabitsProvider';
+import { ToastContext } from '../ToastProvider';
 import './styles.css';
 
 function HabitCreationSummary({
@@ -7,13 +10,56 @@ function HabitCreationSummary({
   behavior,
   time,
   location,
-  handleSubmit,
   scrollLast,
   setIsAm,
   identity,
   setIdentity,
-  tags,
+  weekdays,
+  setDialogOpen,
 }) {
+  const { params, tags } = React.useContext(HabitContext);
+  const { createToast } = React.useContext(ToastContext);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (
+      !habitTitle ||
+      !behavior ||
+      !time ||
+      !location ||
+      !identity ||
+      !Object.keys(weekdays).some((day) => weekdays[day])
+    ) {
+      alert('Please fill in all the fields.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('name', habitTitle);
+    formData.append('user_uuid', params.uuid);
+    formData.append('behavior', behavior);
+    formData.append('time', time);
+    formData.append('location', location);
+    formData.append('tag_name', 'Fitness'); // Replace with the selected tag
+    formData.append('identity', identity); // Adjust as needed
+    formData.append(
+      'days_of_week',
+      Object.keys(weekdays).filter((day) => weekdays[day])
+    );
+    formData.append('dates_repeated', JSON.stringify([])); // Adjust as needed
+
+    try {
+      await createHabit(formData);
+      setDialogOpen(false);
+      createToast('Habit created successfully!', 'success');
+    } catch (error) {
+      createToast(
+        'Something went wrong while making your habit. Try again?',
+        'error'
+      );
+    }
+  };
   function isAmOrPm(dateString) {
     const hour = Number(dateString.slice(0, 2));
     return hour >= 12 ? 'PM' : 'AM';

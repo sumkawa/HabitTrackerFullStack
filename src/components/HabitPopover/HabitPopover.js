@@ -10,9 +10,6 @@ import HabitCreationLocation from '../HabitCreationLocation';
 import HabitCreationSummary from '../HabitCreationSummary';
 import * as Dialog from '@radix-ui/react-dialog';
 import { motion } from 'framer-motion';
-import { createHabit } from '@/app/lib/actions';
-import { HabitContext } from '../HabitsProvider';
-import { NEXT_CACHE_TAGS_HEADER } from 'next/dist/lib/constants';
 
 const weekValues = {
   sunday: false,
@@ -33,10 +30,24 @@ function HabitPopover() {
   const [weekdays, setWeekdays] = React.useState(weekValues);
   const [isAM, setIsAm] = React.useState('AM');
   const [identity, setIdentity] = React.useState('');
-
   const wrapperRef = React.useRef(null);
 
-  const { params, tags } = React.useContext(HabitContext);
+  React.useEffect(() => {
+    if (dialogOpen) {
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    };
+  }, [dialogOpen]);
 
   const scrollNext = () => {
     if (wrapperRef.current) {
@@ -55,45 +66,6 @@ function HabitPopover() {
         left: scrollLeft - clientWidth,
         behavior: 'smooth',
       });
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (
-      !habitTitle ||
-      !behavior ||
-      !time ||
-      !location ||
-      !identity ||
-      !Object.keys(weekdays).some((day) => weekdays[day])
-    ) {
-      alert('Please fill in all the fields.');
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('name', habitTitle);
-    formData.append('user_uuid', params.uuid);
-    formData.append('behavior', behavior);
-    formData.append('time', time);
-    formData.append('location', location);
-    formData.append('tag_name', 'Fitness'); // Replace with the selected tag
-    formData.append('identity', identity); // Adjust as needed
-    formData.append(
-      'days_of_week',
-      Object.keys(weekdays).filter((day) => weekdays[day])
-    );
-    formData.append('dates_repeated', JSON.stringify([])); // Adjust as needed
-
-    try {
-      await createHabit(formData);
-      setDialogOpen(false);
-      alert('Habit created successfully!');
-    } catch (error) {
-      console.error('Error creating habit:', error);
-      alert('Failed to create habit.');
     }
   };
 
@@ -186,12 +158,12 @@ function HabitPopover() {
                       behavior={behavior}
                       time={time}
                       location={location}
-                      handleSubmit={handleSubmit}
                       scrollLast={scrollLast}
                       setIsAm={setIsAm}
                       identity={identity}
                       setIdentity={setIdentity}
-                      tags={tags}
+                      weekdays={weekdays}
+                      setDialogOpen={setDialogOpen}
                     />
                   </div>
                 </motion.div>

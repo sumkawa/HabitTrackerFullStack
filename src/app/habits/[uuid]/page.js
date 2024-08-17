@@ -2,14 +2,12 @@ import React from 'react';
 import styles from './page.module.css';
 import { fetchHabits, fetchTags, fetchUser } from '@/app/lib/data';
 import HabitsProvider from '@/components/HabitsProvider';
-// import { readFile, writeFile } from '../../../helpers/file-helpers';
 // import * as Avatar from '@radix-ui/react-avatar';
 // import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 
 import HabitCard from '@/components/HabitCard';
 import HabitPopover from '@/components/HabitPopover';
-
-// const DATABASE_PATH = '/src/database.json';
+import ToastShelf from '@/components/ToastShelf';
 
 export default async function Profile({ params }) {
   const habits = await fetchHabits(params.uuid);
@@ -24,6 +22,7 @@ export default async function Profile({ params }) {
           <h1 className={styles.span}>{user.name}</h1>
         </div>
         <HabitsProvider habits={habits} tags={tags} params={params} />
+        <ToastShelf />
       </section>
       {/* <aside className={styles.sidebar}>
         <div className={styles.profilePic}>

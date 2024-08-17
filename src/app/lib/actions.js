@@ -44,3 +44,51 @@ export async function createHabit(formData) {
 
   revalidatePath('/dashboard/habits');
 }
+
+const LogHabitSchema = z.object({
+  habit_uuid: z.string().uuid(),
+  user_uuid: z.string().uuid(),
+});
+
+export async function logHabit(formData) {
+  const habitData = LogHabitSchema.parse({
+    habit_uuid: formData.get('habit_uuid'),
+    user_uuid: formData.get('user_uuid'),
+  });
+
+  const today = new Date().toISOString().split('T')[0];
+
+  const { rows } = await sql`
+    SELECT streak, last_day_logged, dates_repeated
+    FROM habits
+    WHERE uuid = ${habitData.habit_uuid} AND user_uuid = ${habitData.user_uuid}
+    LIMIT 1
+  `;
+
+  if (rows.length === 0) {
+    throw new Error(`Habit not found for UUID ${habitData.habit_uuid}`);
+  }
+
+  const habit = rows[0];
+
+  const newStreak =
+    habit.last_day_logged === today ? habit.streak : habit.streak + 1;
+  const updatedDatesRepeated = [
+    ...habit.dates_repeated,
+    { date: today, count: 1 },
+  ];
+
+  // Convert the updatedDatesRepeated array to a JSON string
+  const updatedDatesRepeatedJson = JSON.stringify(updatedDatesRepeated);
+
+  await sql`
+    UPDATE habits
+    SET
+      streak = ${newStreak},
+      last_day_logged = ${today},
+      dates_repeated = ${updatedDatesRepeatedJson}::jsonb
+    WHERE uuid = ${habitData.habit_uuid} AND user_uuid = ${habitData.user_uuid}
+  `;
+
+  revalidatePath('/dashboard/habits');
+}

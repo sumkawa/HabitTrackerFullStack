@@ -6,7 +6,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import { motion } from 'framer-motion';
-import CircularCheckbox from '../CircularCheckbox';
+import CircularButton from '../CircularButton';
 import LabelButton from '../LabelButton';
 import { HabitContext } from '../HabitsProvider';
 import './styles.css';
@@ -14,27 +14,25 @@ import './styles.css';
 function HabitCard({ habitObject }) {
   const { checked, setChecked } = React.useContext(HabitContext);
   const [modalOpen, setModalOpen] = useState(false);
-  const { tags } = React.useContext(HabitContext);
+  const [loading, setLoading] = useState(false);
+  const { tags, params } = React.useContext(HabitContext);
   const tag = tags.find((tag) => tag.tag_name === habitObject.tag_name);
 
   return (
-    <Dialog.Root
-      open={modalOpen}
-      onOpenChange={setModalOpen}
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-    >
+    <Dialog.Root open={modalOpen} onOpenChange={setModalOpen}>
       <Dialog.Trigger asChild>
         <div className='outline'>
           <div className='card'>
             <div className='container-card bg-white-box'>
               <div className='habit-card-header'>
                 <div className='card-title-container'>
-                  <CircularCheckbox
+                  <CircularButton
                     id={habitObject.uuid}
+                    habitUuid={habitObject.uuid}
+                    userUuid={[params.uuid]}
                     checked={checked}
                     setChecked={setChecked}
+                    disabled={loading}
                   />
                   <div className='card-title'>
                     <p>{habitObject.name}</p>
@@ -65,9 +63,7 @@ function HabitCard({ habitObject }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() =>
-              document.querySelector('[data-state="open"]')?.click()
-            }
+            onClick={() => setModalOpen(false)}
           >
             <div className='Header'></div>
             <motion.div
@@ -76,6 +72,7 @@ function HabitCard({ habitObject }) {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()} // Prevents closing the dialog on content click
             >
               <Dialog.Close asChild>
                 <button className='header-exit'>

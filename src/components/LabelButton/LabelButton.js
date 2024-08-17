@@ -1,7 +1,12 @@
 import React from 'react';
 import './styles.css';
+import { ToastContext } from '../ToastProvider';
 
 function LabelButton({ tag }) {
+  const { createToast } = React.useContext(ToastContext);
+  function handleCreateToast() {
+    createToast('Hello World!', 'notice');
+  }
   return (
     <div className='round'>
       <button
@@ -16,7 +21,8 @@ function LabelButton({ tag }) {
         }}
         className='label-button'
         onClick={(event) => {
-          alert('Button clicked!');
+          event.stopPropagation();
+          handleCreateToast();
         }}
       >
         {tag.tag_name}

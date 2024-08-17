@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import CalendarHeatmap from 'react-calendar-heatmap';
+import ReactToolTip from 'react-tooltip';
 import './styles.css';
 
 const HabitCalendar = ({ values, startDate }) => {
@@ -12,9 +13,11 @@ const HabitCalendar = ({ values, startDate }) => {
         endDate={today}
         values={values}
         showWeekdayLabels={true}
-        onClick={(value) =>
-          alert(`Clicked on value with count: ${value.count}`)
-        }
+        tooltipDataAttrs={(value) => {
+          return {
+            'data-tip': 'HELLO WORLD',
+          };
+        }}
       />
     </div>
   );
