@@ -11,13 +11,13 @@ import LabelButton from '../LabelButton';
 import { HabitContext } from '../HabitsProvider';
 import './styles.css';
 
-function HabitCard({ habitObject }) {
+function HabitCard({ habitObject, user }) {
   const { checked, setChecked } = React.useContext(HabitContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const { tags, params } = React.useContext(HabitContext);
   const tag = tags.find((tag) => tag.tag_name === habitObject.tag_name);
-
+  console.log(user);
   return (
     <Dialog.Root open={modalOpen} onOpenChange={setModalOpen}>
       <Dialog.Trigger asChild>
@@ -30,6 +30,7 @@ function HabitCard({ habitObject }) {
                     id={habitObject.uuid}
                     habitUuid={habitObject.uuid}
                     userUuid={[params.uuid]}
+                    timezone={user.timezone}
                     checked={checked}
                     setChecked={setChecked}
                     disabled={loading}

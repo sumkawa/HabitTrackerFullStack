@@ -14,13 +14,15 @@ function ToastProvider({ children }) {
 
   useKeydown('Escape', handleEscape);
 
-  function createToast(message, variant) {
+  function createToast(message, variant, isUndo = false, undoFunction = false) {
     const nextToasts = [
       ...toasts,
       {
         id: crypto.randomUUID(),
         message,
         variant,
+        isUndo,
+        undoFunction,
       },
     ];
 

@@ -31,8 +31,8 @@ export async function createHabit(formData) {
   });
 
   console.log('user id:', habitData.user_uuid);
-
-  await sql`
+  try {
+    await sql`
     INSERT INTO habits (
       uuid, user_uuid, name, streak, date_started, last_day_logged, behavior, time, location, tag_name, identity, days_of_week, dates_repeated
     ) VALUES (
@@ -41,6 +41,11 @@ export async function createHabit(formData) {
       ${habitData.dates_repeated}
     )
   `;
+  } catch (error) {
+    return {
+      message: 'Database Error: Failed to Create Invoice.',
+    };
+  }
 
   revalidatePath('/dashboard/habits');
 }
@@ -48,15 +53,24 @@ export async function createHabit(formData) {
 const LogHabitSchema = z.object({
   habit_uuid: z.string().uuid(),
   user_uuid: z.string().uuid(),
+  timezone: z.string(),
 });
 
 export async function logHabit(formData) {
+  // throw new Error('Failed to log habit');
+
   const habitData = LogHabitSchema.parse({
     habit_uuid: formData.get('habit_uuid'),
     user_uuid: formData.get('user_uuid'),
+    timezone: formData.get('timezone'),
   });
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toLocaleDateString('en-CA', {
+    timeZone: habitData.timezone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
 
   const { rows } = await sql`
     SELECT streak, last_day_logged, dates_repeated
@@ -81,7 +95,8 @@ export async function logHabit(formData) {
   // Convert the updatedDatesRepeated array to a JSON string
   const updatedDatesRepeatedJson = JSON.stringify(updatedDatesRepeated);
 
-  await sql`
+  try {
+    await sql`
     UPDATE habits
     SET
       streak = ${newStreak},
@@ -89,6 +104,59 @@ export async function logHabit(formData) {
       dates_repeated = ${updatedDatesRepeatedJson}::jsonb
     WHERE uuid = ${habitData.habit_uuid} AND user_uuid = ${habitData.user_uuid}
   `;
+  } catch (error) {
+    return { message: 'Database Error: Failed to log habit.' };
+  }
+
+  revalidatePath('/dashboard/habits');
+}
+
+const UndoLogHabitSchema = z.object({
+  habit_uuid: z.string().uuid(),
+  user_uuid: z.string().uuid(),
+});
+
+export async function undoLogHabit(formData) {
+  const habitData = UndoLogHabitSchema.parse({
+    habit_uuid: formData.get('habit_uuid'),
+    user_uuid: formData.get('user_uuid'),
+  });
+
+  const { rows } = await sql`
+    SELECT streak, dates_repeated
+    FROM habits
+    WHERE uuid = ${habitData.habit_uuid} AND user_uuid = ${habitData.user_uuid}
+    LIMIT 1
+  `;
+
+  if (rows.length === 0) {
+    throw new Error(`Habit not found for UUID ${habitData.habit_uuid}`);
+  }
+
+  const habit = rows[0];
+
+  const updatedDatesRepeated = habit.dates_repeated.slice(0, -1);
+  const newStreak = habit.streak > 0 ? habit.streak - 1 : 0;
+
+  const lastDayLogged =
+    updatedDatesRepeated.length > 0
+      ? updatedDatesRepeated[updatedDatesRepeated.length - 1].date
+      : null;
+
+  const updatedDatesRepeatedJson = JSON.stringify(updatedDatesRepeated);
+
+  try {
+    await sql`
+      UPDATE habits
+      SET
+        streak = ${newStreak},
+        last_day_logged = ${lastDayLogged},
+        dates_repeated = ${updatedDatesRepeatedJson}::jsonb
+      WHERE uuid = ${habitData.habit_uuid} AND user_uuid = ${habitData.user_uuid}
+    `;
+  } catch (error) {
+    throw new Error('Failed to undo habit log');
+  }
 
   revalidatePath('/dashboard/habits');
 }

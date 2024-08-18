@@ -131,3 +131,45 @@
 .NavigationMenuViewport {
   display: none;
 }
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textErrorCenter {
+  font-size: 4rem;
+}
+
+.errorButton {
+  border-radius: 5px;
+  background-color: #0090ff;
+  font-size: 2rem;
+  color: var(--color-text);
+  padding: 20px;
+  margin: 10px;
+}
+
+.errorButton:hover {
+  background-color: skyblue;
+}
+
+.notFound {
+  border-radius: 5px;
+  background-color: #0090ff;
+  font-size: 1rem;
+  color: white;
+  padding: 10px;
+  margin-top: 0px;
+  margin: 10px;
+}
+
+.notFound:hover {
+  background-color: skyblue;
+}
+
+.notFoundIcon {
+  height: 100px;
+  width: 100px;
+}

@@ -6,21 +6,30 @@ import HabitPopover from '../HabitPopover';
 
 export const HabitContext = React.createContext();
 
-function HabitsProvider({ habits, tags, params }) {
-  const [checked, setChecked] = React.useState({});
-  React.useEffect(() => {
-    const today = new Date().toISOString().split('T')[0];
+function HabitsProvider({ habits, tags, params, user }) {
+  const [checked, setChecked] = React.useState(() => {
+    const getTodayInUserTimezone = (timezone) => {
+      const date = new Date().toLocaleString('en-US', { timeZone: timezone });
+      const localDate = new Date(date);
+      return `${localDate.getFullYear()}-${String(
+        localDate.getMonth() + 1
+      ).padStart(2, '0')}-${String(localDate.getDate()).padStart(2, '0')}`;
+    };
+
+    const today = getTodayInUserTimezone(user.timezone);
 
     const initialCheckBoxes = {};
     habits.forEach((habit) => {
-      const habitLastDayLogged = new Date(habit.last_day_logged)
-        .toISOString()
-        .split('T')[0];
+      const habitDate = new Date(habit.last_day_logged);
+      const habitLastDayLogged = `${habitDate.getFullYear()}-${String(
+        habitDate.getMonth() + 1
+      ).padStart(2, '0')}-${String(habitDate.getDate()).padStart(2, '0')}`;
+
       initialCheckBoxes[habit.uuid] = habitLastDayLogged === today;
     });
-
-    setChecked(initialCheckBoxes);
-  }, [habits]);
+    console.log(initialCheckBoxes);
+    return initialCheckBoxes;
+  });
 
   return (
     <HabitContext.Provider
@@ -30,7 +39,11 @@ function HabitsProvider({ habits, tags, params }) {
         <span className='habitsContainerHeroText'>My Habits</span>
         <div>
           {habits.map((habit, index) => (
-            <HabitCard key={`${habit}-${index}`} habitObject={habit} />
+            <HabitCard
+              key={`${habit}-${index}`}
+              habitObject={habit}
+              user={user}
+            />
           ))}
         </div>
         <span className='add-habit'>

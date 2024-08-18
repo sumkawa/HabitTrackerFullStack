@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './page.module.css';
 import { fetchHabits, fetchTags, fetchUser } from '@/app/lib/data';
+import { notFound } from 'next/navigation';
 import HabitsProvider from '@/components/HabitsProvider';
 // import * as Avatar from '@radix-ui/react-avatar';
 // import * as NavigationMenu from '@radix-ui/react-navigation-menu';
@@ -10,9 +11,12 @@ import HabitPopover from '@/components/HabitPopover';
 import ToastShelf from '@/components/ToastShelf';
 
 export default async function Profile({ params }) {
+  const user = await fetchUser(params.uuid);
+  if (!user) {
+    notFound();
+  }
   const habits = await fetchHabits(params.uuid);
   const tags = await fetchTags(params.uuid);
-  const user = await fetchUser(params.uuid);
 
   return (
     <main className={styles.container}>
@@ -21,7 +25,12 @@ export default async function Profile({ params }) {
           <p>Welcome back, </p>
           <h1 className={styles.span}>{user.name}</h1>
         </div>
-        <HabitsProvider habits={habits} tags={tags} params={params} />
+        <HabitsProvider
+          habits={habits}
+          tags={tags}
+          params={params}
+          user={user}
+        />
         <ToastShelf />
       </section>
       {/* <aside className={styles.sidebar}>

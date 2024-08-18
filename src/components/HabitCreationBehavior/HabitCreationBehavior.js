@@ -40,6 +40,7 @@ function HabitCreationBehavior({
             onChange={(event) => {
               setBehavior(event.target.value);
             }}
+            autoComplete='off'
           />
           <label htmlFor='name' className='form__label__paragraph'>
             Behavior

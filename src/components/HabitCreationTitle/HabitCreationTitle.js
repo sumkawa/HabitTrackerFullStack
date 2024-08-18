@@ -20,6 +20,7 @@ function HabitCreationTitle({ habitTitle, setHabitTitle, scrollNext }) {
           onChange={(event) => {
             setHabitTitle(event.target.value);
           }}
+          autoComplete='off'
         />
         <label htmlFor='name' className='form__label'>
           Name

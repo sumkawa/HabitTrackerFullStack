@@ -19,7 +19,7 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ id, variant, children }) {
+function Toast({ id, variant, isUndo, undoFunction, children }) {
   const { dismissToast } = React.useContext(ToastContext);
   const Icon = ICONS_BY_VARIANT[variant];
 
@@ -31,6 +31,7 @@ function Toast({ id, variant, children }) {
       <p className={styles.content}>
         <VisuallyHidden>{variant} -</VisuallyHidden>
         {children}
+        {isUndo && <button onClick={undoFunction}> Undo?</button>}
       </p>
       <button
         className={styles.closeButton}

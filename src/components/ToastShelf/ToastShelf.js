@@ -17,7 +17,12 @@ function ToastShelf() {
     >
       {toasts.map((toast) => (
         <li key={toast.id} className={styles.toastWrapper}>
-          <Toast id={toast.id} variant={toast.variant}>
+          <Toast
+            id={toast.id}
+            variant={toast.variant}
+            isUndo={toast.isUndo}
+            undoFunction={toast.undoFunction}
+          >
             {toast.message}
           </Toast>
         </li>

@@ -62,22 +62,18 @@ export async function fetchUser(userId) {
         uuid,
         name,
         email,
-        username
+        username,
+        timezone
       FROM users
       WHERE uuid = ${userId}
       LIMIT 1
     `;
 
-    // Check if a user was found
-    if (rows.length === 0) {
-      throw new Error(`User with UUID ${userId} not found.`);
-    }
-
     // Return the first (and only) row as the user object
     return rows[0];
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch user.');
+    throw new Error('Database Error: Failed to Fetch User.');
   }
 }
 

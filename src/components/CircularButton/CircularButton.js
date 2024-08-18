@@ -2,12 +2,13 @@
 import React from 'react';
 import { ToastContext } from '../ToastProvider';
 import { CheckIcon } from '@radix-ui/react-icons';
-import { logHabit } from '@/app/lib/actions';
+import { logHabit, undoLogHabit } from '@/app/lib/actions';
 import './styles.css';
 
 function CircularButton({
   habitUuid,
   userUuid,
+  timezone,
   disabled,
   checked,
   setChecked,
@@ -21,7 +22,7 @@ function CircularButton({
     if (loading) {
       return;
     } else if (checked[habitUuid]) {
-      createToast('Already logged habit for the day!', 'notice');
+      createToast('Already logged habit!', 'notice', true, () => undoLog());
       return;
     }
 
@@ -31,9 +32,10 @@ function CircularButton({
       const formData = new FormData();
       formData.append('habit_uuid', habitUuid);
       formData.append('user_uuid', userUuid);
+      formData.append('timezone', timezone);
 
       await logHabit(formData);
-
+      console.log('ran');
       setChecked({ ...checked, [habitUuid]: true });
 
       createToast('Habit logged for today! Nice work.', 'success');
@@ -44,6 +46,27 @@ function CircularButton({
       setLoading(false);
     }
   };
+
+  const undoLog = async () => {
+    setLoading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('habit_uuid', habitUuid);
+      formData.append('user_uuid', userUuid);
+
+      await undoLogHabit(formData);
+
+      setChecked({ ...checked, [habitUuid]: false });
+      createToast('Habit log undone.', 'notice');
+    } catch (error) {
+      console.error('Error undoing habit log:', error);
+      createToast('Failed to undo habit log', 'error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className='circular-button-wrapper'>
       <button

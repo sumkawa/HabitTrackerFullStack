@@ -69,6 +69,7 @@ function HabitCreationLocation({
             onChange={(event) => {
               setLocation(event.target.value);
             }}
+            autoComplete='off'
           />
           <label htmlFor='name' className='form__label__paragraph'>
             Location
