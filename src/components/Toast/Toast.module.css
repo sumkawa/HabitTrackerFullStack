@@ -59,3 +59,13 @@
 .error .iconContainer {
   color: hsl(345deg 100% 50%);
 }
+
+.undoButton {
+  margin: 5px;
+  color: var(--color-primary);
+}
+
+.undoButton:hover {
+  border-radius: 5px;
+  background-color: #c2e6ff;
+}

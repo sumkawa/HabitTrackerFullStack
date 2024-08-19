@@ -3,7 +3,7 @@ import React from 'react';
 import { ToastContext } from '../ToastProvider';
 import { CheckIcon } from '@radix-ui/react-icons';
 import { logHabit, undoLogHabit } from '@/app/lib/actions';
-import './styles.css';
+import styles from './CircularButton.module.css';
 
 function CircularButton({
   habitUuid,
@@ -35,7 +35,6 @@ function CircularButton({
       formData.append('timezone', timezone);
 
       await logHabit(formData);
-      console.log('ran');
       setChecked({ ...checked, [habitUuid]: true });
 
       createToast('Habit logged for today! Nice work.', 'success');
@@ -68,13 +67,15 @@ function CircularButton({
   };
 
   return (
-    <div className='circular-button-wrapper'>
+    <div className={styles.circularButtonWrapper}>
       <button
-        className={`circular-button ${checked[habitUuid]}`}
+        className={`${styles.circularButton} ${styles[checked[habitUuid]]} ${
+          disabled || loading ? styles.circularButtonDisabled : ''
+        }`}
         onClick={handleClick}
         disabled={disabled || loading}
       >
-        {checked[habitUuid] ? <CheckIcon height='20px' width='20px' /> : <></>}
+        {checked[habitUuid] ? <CheckIcon height='20px' width='20px' /> : null}
       </button>
     </div>
   );

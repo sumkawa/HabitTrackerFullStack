@@ -31,7 +31,12 @@ function Toast({ id, variant, isUndo, undoFunction, children }) {
       <p className={styles.content}>
         <VisuallyHidden>{variant} -</VisuallyHidden>
         {children}
-        {isUndo && <button onClick={undoFunction}> Undo?</button>}
+        {isUndo && (
+          <button onClick={undoFunction} className={styles.undoButton}>
+            {' '}
+            Undo?
+          </button>
+        )}
       </p>
       <button
         className={styles.closeButton}

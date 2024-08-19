@@ -4,12 +4,14 @@ import CalendarHeatmap from 'react-calendar-heatmap';
 import ReactToolTip from 'react-tooltip';
 import './styles.css';
 
-const HabitCalendar = ({ values, startDate }) => {
+const HabitCalendar = ({ values }) => {
   const today = new Date();
+  const startDate = new Date();
+  startDate.setMonth(today.getMonth() - 3);
   return (
     <div className='CalendarContainer'>
       <CalendarHeatmap
-        startDate={new Date(startDate)}
+        startDate={startDate}
         endDate={today}
         values={values}
         showWeekdayLabels={true}

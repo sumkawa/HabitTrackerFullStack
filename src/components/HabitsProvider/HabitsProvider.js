@@ -27,7 +27,7 @@ function HabitsProvider({ habits, tags, params, user }) {
 
       initialCheckBoxes[habit.uuid] = habitLastDayLogged === today;
     });
-    console.log(initialCheckBoxes);
+
     return initialCheckBoxes;
   });
 

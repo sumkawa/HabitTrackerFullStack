@@ -117,6 +117,14 @@
   height: 2px;
   width: 100%;
 }
+.identity {
+  color: var(--color-text);
+  text-shadow: rgba(255, 255, 255, 0.5) 0px 0px 4px;
+  padding-bottom: 4px;
+  position: relative;
+  text-decoration: none;
+}
+
 .container {
   width: 1200px !important;
   padding: 0 !important;
@@ -321,6 +329,7 @@ input {
   left: 0;
   right: 0;
   bottom: 0;
+  inset: 0;
   display: grid;
   place-items: center;
   align-items: center;
@@ -329,13 +338,17 @@ input {
 
 .DialogContent {
   max-width: 500px;
-  background: var(--color-widget-background);
+  background-color: var(--color-widget-background);
   border-radius: 10px;
   padding: 20px;
   width: 60%;
   min-height: 40%;
+  transform: translate(-50%, -50%);
   border: 1px solid var(--color-border);
   position: fixed;
+}
+.DialogContent:focus {
+  outline: none;
 }
 
 .DialogTitle {

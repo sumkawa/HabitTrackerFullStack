@@ -30,7 +30,6 @@ export async function createHabit(formData) {
     dates_repeated: formData.get('dates_repeated'),
   });
 
-  console.log('user id:', habitData.user_uuid);
   try {
     await sql`
     INSERT INTO habits (
@@ -158,5 +157,62 @@ export async function undoLogHabit(formData) {
     throw new Error('Failed to undo habit log');
   }
 
+  revalidatePath('/dashboard/habits');
+}
+
+const UpdateHabitSchema = z.object({
+  habit_uuid: z.string().uuid(),
+  user_uuid: z.string().uuid(),
+  name: z.string().min(1),
+  behavior: z.string().min(1),
+  time: z.string().optional(),
+  location: z.string().optional(),
+  tag_name: z.string().min(1),
+  identity: z.string().optional(),
+  days_of_week: z.array(z.string().min(1)),
+});
+
+export async function updateHabit(formData) {
+  // Parse and validate form data
+
+  const habitData = UpdateHabitSchema.parse({
+    habit_uuid: formData.get('habit_uuid'),
+    user_uuid: formData.get('user_uuid'),
+    name: formData.get('name'),
+    behavior: formData.get('behavior'),
+    time: formData.get('time'),
+    location: formData.get('location'),
+    tag_name: formData.get('tag_name'),
+    identity: formData.get('identity'),
+    days_of_week: formData.getAll('days_of_week'),
+  });
+  try {
+    await sql`
+      UPDATE habits
+      SET
+        name = ${habitData.name},
+        behavior = ${habitData.behavior},
+        time = ${habitData.time},
+        location = ${habitData.location},
+        tag_name = ${habitData.tag_name},
+        identity = ${habitData.identity},
+        days_of_week = ${habitData.days_of_week}
+      WHERE
+        uuid = ${habitData.habit_uuid} AND user_uuid = ${habitData.user_uuid}
+    `;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+export async function deleteHabit(habitUuid, userUuid) {
+  try {
+    await sql`
+      DELETE FROM habits
+      WHERE uuid = ${habitUuid} AND user_uuid = ${userUuid}
+    `;
+  } catch (error) {
+    throw new Error('Failed to delete habit');
+  }
   revalidatePath('/dashboard/habits');
 }

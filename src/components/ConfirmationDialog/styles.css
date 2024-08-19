@@ -1,0 +1,61 @@
+/* ConfirmationDialog.css */
+.DialogOverlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  inset: 0;
+}
+
+.DialogContent {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centers the dialog */
+}
+
+.DialogTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.DialogDescription {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.ButtonGroup {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+
+.ConfirmButton {
+  background-color: #28a745;
+  color: white;
+  margin-right: 10px;
+}
+
+.ConfirmButton:hover {
+  background-color: #218838;
+}
+
+.CancelButton {
+  background-color: #dc3545;
+  color: white;
+}
+
+.CancelButton:hover {
+  background-color: #c82333;
+}

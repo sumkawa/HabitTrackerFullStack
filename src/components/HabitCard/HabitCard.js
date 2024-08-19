@@ -9,17 +9,38 @@ import { motion } from 'framer-motion';
 import CircularButton from '../CircularButton';
 import LabelButton from '../LabelButton';
 import { HabitContext } from '../HabitsProvider';
+import EditHabitButton from '../EditHabitButton';
 import './styles.css';
 
 function HabitCard({ habitObject, user }) {
   const { checked, setChecked } = React.useContext(HabitContext);
   const [modalOpen, setModalOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false); // New state for EditHabitButton
   const [loading, setLoading] = useState(false);
   const { tags, params } = React.useContext(HabitContext);
   const tag = tags.find((tag) => tag.tag_name === habitObject.tag_name);
-  console.log(user);
+
+  function convertTwentyFourToString(dateString) {
+    let hour = Number(dateString.slice(0, 2));
+    const minute = dateString.slice(3, 5);
+    let amOrPm = '';
+    if (hour >= 12) {
+      hour = hour > 12 ? hour - 12 : hour;
+      amOrPm = 'PM';
+    } else {
+      hour = hour === 0 ? 12 : hour;
+      amOrPm = 'AM';
+    }
+
+    const stringTime = `${hour}:${minute} ${amOrPm}`;
+    return stringTime;
+  }
+
   return (
-    <Dialog.Root open={modalOpen} onOpenChange={setModalOpen}>
+    <Dialog.Root
+      open={modalOpen}
+      onOpenChange={(isOpen) => !editOpen && setModalOpen(isOpen)} // Check if editOpen is false
+    >
       <Dialog.Trigger asChild>
         <div className='outline'>
           <div className='card'>
@@ -38,6 +59,14 @@ function HabitCard({ habitObject, user }) {
                   <div className='card-title'>
                     <p>{habitObject.name}</p>
                   </div>
+                  <div>
+                    <EditHabitButton
+                      editOpen={editOpen}
+                      setEditOpen={setEditOpen}
+                      habit={habitObject}
+                      user={user}
+                    />
+                  </div>
                 </div>
 
                 <div className='card-streak'>
@@ -49,9 +78,13 @@ function HabitCard({ habitObject, user }) {
                 <span>I will </span>
                 <span className='behavior'>{habitObject.behavior}</span>
                 <span> at </span>
-                <span className='time'>{habitObject.time}</span>
+                <span className='time'>
+                  {convertTwentyFourToString(habitObject.time)}
+                </span>
                 <span> in </span>
                 <span className='location'>{habitObject.location}</span>
+                <span> to become </span>
+                <span className='identity'>{habitObject.identity}</span>
               </p>
             </div>
           </div>

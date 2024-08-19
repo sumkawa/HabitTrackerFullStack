@@ -4,7 +4,6 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 6rem;
-  min-height: 100vh;
   scrollbar-color: var(--color-border) var(--color-text);
   scrollbar-width: thin;
 }

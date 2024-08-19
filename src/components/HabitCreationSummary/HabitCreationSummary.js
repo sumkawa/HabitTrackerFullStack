@@ -19,7 +19,6 @@ function HabitCreationSummary({
 }) {
   const { params, tags } = React.useContext(HabitContext);
   const { createToast } = React.useContext(ToastContext);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -35,19 +34,24 @@ function HabitCreationSummary({
       return;
     }
 
+    const daysOfWeek = Object.keys(weekdays)
+      .filter((day) => weekdays[day])
+      .map((day) => day.charAt(0).toUpperCase() + day.slice(1));
+
     const formData = new FormData();
     formData.append('name', habitTitle);
     formData.append('user_uuid', params.uuid);
     formData.append('behavior', behavior);
     formData.append('time', time);
     formData.append('location', location);
-    formData.append('tag_name', 'Fitness'); // Replace with the selected tag
-    formData.append('identity', identity); // Adjust as needed
-    formData.append(
-      'days_of_week',
-      Object.keys(weekdays).filter((day) => weekdays[day])
-    );
-    formData.append('dates_repeated', JSON.stringify([])); // Adjust as needed
+    formData.append('tag_name', 'Fitness');
+    formData.append('identity', identity);
+
+    daysOfWeek.forEach((day) => {
+      formData.append('days_of_week', day);
+    });
+
+    formData.append('dates_repeated', JSON.stringify([]));
 
     try {
       await createHabit(formData);
@@ -60,6 +64,7 @@ function HabitCreationSummary({
       );
     }
   };
+
   function isAmOrPm(dateString) {
     const hour = Number(dateString.slice(0, 2));
     return hour >= 12 ? 'PM' : 'AM';

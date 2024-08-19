@@ -302,6 +302,6 @@
 }
 
 .weekDays-selector input[type='checkbox']:checked + label {
-  background: #2ad705;
+  background-color: #62c073;
   color: #ffffff;
 }
