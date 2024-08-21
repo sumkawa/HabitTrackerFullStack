@@ -73,7 +73,6 @@ function HabitCard({ habitObject, user }) {
                   <p>{habitObject.streak}</p>
                 </div>
               </div>
-              <LabelButton tag={tag} />
               <p className='card-description'>
                 <span>I will </span>
                 <span className='behavior'>{habitObject.behavior}</span>
