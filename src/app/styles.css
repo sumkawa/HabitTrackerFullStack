@@ -102,6 +102,9 @@ body {
   position: relative;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  margin-top: 0px;
+  padding-top: 0px;
 }
 /* ===== Scrollbar CSS ===== */
 /* Firefox */

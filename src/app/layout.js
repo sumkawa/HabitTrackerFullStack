@@ -1,9 +1,14 @@
 import React from 'react';
 import DarkLightToggle from '@/components/DarkLightToggle';
 import './styles.css';
+import MainNavBar from '@/components/MainNavBar';
 import { cookies } from 'next/headers';
 import { LIGHT_COLORS, DARK_COLORS } from '@/constants';
 import ToastProvider from '@/components/ToastProvider';
+
+export const metadata = {
+  title: 'Habit Tracker',
+};
 
 export default function RootLayout({ children }) {
   const savedTheme = cookies().get('color-theme');
@@ -15,7 +20,8 @@ export default function RootLayout({ children }) {
       <ToastProvider>
         <body>
           <div className='header'>
-            <DarkLightToggle initialTheme={theme} />
+            <div>ICON</div>
+            <MainNavBar />
           </div>
           {children}
         </body>

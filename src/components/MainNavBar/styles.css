@@ -21,7 +21,7 @@ p {
   align-items: center;
   justify-content: flex-end;
   width: 100vw;
-  padding: 20px;
+  padding: 30px 30px 0 30px;
   z-index: 1;
 }
 .Arrow {
@@ -83,6 +83,7 @@ p {
   width: 100%;
   animation-duration: 250ms;
   animation-timing-function: ease;
+  background-color: var(--color-border);
 }
 .NavigationMenuContent[data-motion='from-start'] {
   animation-name: enterFromLeft;
@@ -122,7 +123,6 @@ p {
 .NavigationMenuViewport {
   position: relative;
   transform-origin: top center;
-  margin-top: 10px;
   width: 100%;
   background-color: var(--color-background);
   border-radius: 6px;
@@ -214,13 +214,12 @@ p {
   font-size: 18px;
   font-weight: 500;
   line-height: 1.2;
-  margin-top: 16px;
   margin-bottom: 7px;
-  color: #eeeef0;
+  color: var(--color-text);
 }
 
 .CalloutText {
-  color: #eeeef0;
+  color: var(--color-text);
   font-size: 14px;
   line-height: 1.3;
 }
