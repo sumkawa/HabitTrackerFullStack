@@ -35,7 +35,7 @@ function EditHabitButton({ editOpen, setEditOpen, habit, user }) {
   const weekdaysList = Object.keys(weekdays);
 
   const [showConfirmPopover, setShowConfirmPopover] = useState(false);
-  const { tags, params } = React.useContext(HabitContext);
+  const { tags } = React.useContext(HabitContext);
 
   const tag = tags.find((tag) => tag.tag_name === habit.tag_name);
   function handleWeekdayChange(day) {

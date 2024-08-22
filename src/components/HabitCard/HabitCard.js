@@ -7,7 +7,6 @@ import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import { motion } from 'framer-motion';
 import CircularButton from '../CircularButton';
-import LabelButton from '../LabelButton';
 import { HabitContext } from '../HabitsProvider';
 import EditHabitButton from '../EditHabitButton';
 import './styles.css';
@@ -50,7 +49,7 @@ function HabitCard({ habitObject, user }) {
                   <CircularButton
                     id={habitObject.uuid}
                     habitUuid={habitObject.uuid}
-                    userUuid={[params.uuid]}
+                    userUuid={[user.uuid]}
                     timezone={user.timezone}
                     checked={checked}
                     setChecked={setChecked}

@@ -17,7 +17,7 @@ function HabitCreationSummary({
   weekdays,
   setDialogOpen,
 }) {
-  const { params, tags } = React.useContext(HabitContext);
+  const { tags } = React.useContext(HabitContext);
   const { createToast } = React.useContext(ToastContext);
   const handleSubmit = async (event) => {
     event.preventDefault();
