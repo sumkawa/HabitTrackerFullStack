@@ -17,7 +17,7 @@ function HabitCreationSummary({
   weekdays,
   setDialogOpen,
 }) {
-  const { params, tags } = React.useContext(HabitContext);
+  const { tags } = React.useContext(HabitContext);
   const { createToast } = React.useContext(ToastContext);
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -44,7 +44,7 @@ function HabitCreationSummary({
     formData.append('behavior', behavior);
     formData.append('time', time);
     formData.append('location', location);
-    formData.append('tag_name', 'Fitness');
+    formData.append('tag_name', 'None');
     formData.append('identity', identity);
 
     daysOfWeek.forEach((day) => {

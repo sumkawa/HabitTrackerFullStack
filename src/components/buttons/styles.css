@@ -1,0 +1,50 @@
+.button__sign-up {
+  padding: 8px 12px;
+  outline: none;
+  user-select: none;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: 4px;
+  font-size: 1.25rem;
+  color: white;
+  text-decoration: none;
+  margin: 12px;
+  background-color: #0090ff;
+}
+.button__sign-up:hover {
+  padding: 8px 12px;
+  outline: none;
+  user-select: none;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: 4px;
+  font-size: 1.25rem;
+  color: white;
+  text-decoration: none;
+  margin: 12px;
+  background-color: #205d9e;
+}
+
+.button__logout {
+  padding: 8px 12px;
+  outline: none;
+  user-select: none;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: 4px;
+  font-size: 1.25rem;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.button__login {
+  padding: 8px 12px;
+  outline: none;
+  user-select: none;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: 4px;
+  font-size: 1.25rem;
+  color: var(--color-text);
+  text-decoration: none;
+}

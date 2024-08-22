@@ -10,9 +10,13 @@ import { updateHabit } from '@/app/lib/actions';
 import { deleteHabit } from '@/app/lib/actions';
 import ConfirmationPopover from '../ConfirmationPopover';
 import { ToastContext } from '../ToastProvider';
+import LabelButton from '../LabelButton';
+import { HabitContext } from '../HabitsProvider';
 import './styles.css';
 
 function EditHabitButton({ editOpen, setEditOpen, habit, user }) {
+  // habit.tag_name = 'Fitness'
+  // params.uuid = the user uuid
   const [behavior, setBehavior] = useState(habit.behavior);
   const [time, setTime] = useState(habit.time);
   const [location, setLocation] = useState(habit.location);
@@ -27,11 +31,13 @@ function EditHabitButton({ editOpen, setEditOpen, habit, user }) {
     saturday: habit.days_of_week.includes('Saturday'),
   });
   const { createToast } = React.useContext(ToastContext);
-  const [showConfirmPopover, setShowConfirmPopover] = useState(false);
-
   const [loading, setLoading] = useState(false);
   const weekdaysList = Object.keys(weekdays);
 
+  const [showConfirmPopover, setShowConfirmPopover] = useState(false);
+  const { tags } = React.useContext(HabitContext);
+
+  const tag = tags.find((tag) => tag.tag_name === habit.tag_name);
   function handleWeekdayChange(day) {
     setWeekdays((prev) => ({ ...prev, [day]: !prev[day] }));
   }

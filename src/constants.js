@@ -13,6 +13,8 @@ export const LIGHT_COLORS = {
   '--color-deemphasized-text': 'hsla(0, 0%, 0%, 0.7)',
   '--habit-card-hover': 'rgba(0, 144, 255, 0.2)',
   '--color-hover': '#B4B4B4',
+  '--text-fill-color': 'none',
+  '--hero-text-shadow': 'white',
 };
 
 export const DARK_COLORS = {
@@ -31,4 +33,6 @@ export const DARK_COLORS = {
   '--color-deemphasized-text': 'hsla(0, 0%, 100%, 0.6)',
   '--habit-card-hover': 'rgba(127, 207, 255, 0.2)',
   '--color-hover': '#B4B4B4',
+  '--text-fill-color': 'transparent',
+  '--hero-text-shadow': 'rgba(0, 87, 255, 0.3)',
 };

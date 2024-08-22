@@ -1,4 +1,5 @@
 import { sql } from '@vercel/postgres';
+import { v4 as uuidv4 } from 'uuid';
 
 export async function fetchHabits(userId) {
   try {
@@ -55,25 +56,51 @@ export async function createHabit(habit) {
   }
 }
 
-export async function fetchUser(userId) {
+export async function fetchUserByEmail(email) {
   try {
     const { rows } = await sql`
       SELECT
         uuid,
         name,
         email,
-        username,
         timezone
       FROM users
-      WHERE uuid = ${userId}
+      WHERE email = ${email}
       LIMIT 1
     `;
 
-    // Return the first (and only) row as the user object
     return rows[0];
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Database Error: Failed to Fetch User.');
+    throw new Error('Failed to fetch user.');
+  }
+}
+
+export async function createUser(user) {
+  try {
+    // Check if a user with the same email already exists
+    const { rows } = await sql`
+      SELECT email FROM users WHERE email = ${user.email} LIMIT 1
+    `;
+
+    if (rows.length > 0) {
+      console.log('User with this email already exists.');
+      return { success: false, message: 'User already exists' };
+    }
+
+    // Proceed with user creation if the email is unique
+    const userId = uuidv4();
+    await sql`
+      INSERT INTO users (uuid, name, email, timezone)
+      VALUES (
+        ${userId}, ${user.name}, ${user.email}, ${user.timezone}
+      )
+    `;
+
+    return { success: true, uuid: userId };
+  } catch (error) {
+    console.error('Database Error:', error.message, error.stack);
+    throw new Error('Failed to create user.');
   }
 }
 

@@ -21,8 +21,7 @@ function LabelButton({ tag }) {
         }}
         className='label-button'
         onClick={(event) => {
-          event.stopPropagation();
-          handleCreateToast();
+          event.preventDefault();
         }}
       >
         {tag.tag_name}

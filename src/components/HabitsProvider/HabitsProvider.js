@@ -3,10 +3,11 @@ import React from 'react';
 import './styles.css';
 import HabitCard from '../HabitCard';
 import HabitPopover from '../HabitPopover';
+import HabitCardPlaceholder from '../HabitCardPlaceholder';
 
 export const HabitContext = React.createContext();
 
-function HabitsProvider({ habits, tags, params, user }) {
+function HabitsProvider({ habits, tags, user }) {
   const [checked, setChecked] = React.useState(() => {
     const getTodayInUserTimezone = (timezone) => {
       const date = new Date().toLocaleString('en-US', { timeZone: timezone });
@@ -32,19 +33,21 @@ function HabitsProvider({ habits, tags, params, user }) {
   });
 
   return (
-    <HabitContext.Provider
-      value={{ habits, tags, params, checked, setChecked }}
-    >
+    <HabitContext.Provider value={{ habits, tags, checked, setChecked }}>
       <div className='habitsContainer'>
         <span className='habitsContainerHeroText'>My Habits</span>
         <div>
-          {habits.map((habit, index) => (
-            <HabitCard
-              key={`${habit}-${index}`}
-              habitObject={habit}
-              user={user}
-            />
-          ))}
+          {habits.length === 0 ? (
+            <HabitCardPlaceholder />
+          ) : (
+            habits.map((habit, index) => (
+              <HabitCard
+                key={`${habit.uuid}-${index}`}
+                habitObject={habit}
+                user={user}
+              />
+            ))
+          )}
         </div>
         <span className='add-habit'>
           <HabitPopover />

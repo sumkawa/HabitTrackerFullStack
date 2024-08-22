@@ -8,7 +8,7 @@ export default function NotFound() {
       <LinkBreak2Icon className={styles.notFoundIcon} />
       <h2 className={styles.textErrorCenter}>Uh oh.</h2>
       <p>We couldn't find the requested user.</p>
-      <Link href='/habits/' className={styles.notFound}>
+      <Link href='/habits/profile' className={styles.notFound}>
         Go Back
       </Link>
     </main>

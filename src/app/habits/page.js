@@ -1,12 +1,12 @@
+import HabitsInfoText from '@/components/HabitsInfoText';
 import styles from './page.module.css';
-
+import { cookies } from 'next/headers';
 export default function Habits() {
+  const savedTheme = cookies().get('color-theme');
+  const theme = savedTheme?.value || 'light';
   return (
     <main className={styles.main}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>Build Better Habits.</h1>
-        <p className={styles.subtitle}>Get started with atoms.</p>
-      </div>
+      <HabitsInfoText />
     </main>
   );
 }
