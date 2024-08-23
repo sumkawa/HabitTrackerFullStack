@@ -7,6 +7,7 @@ import { FaceIcon, ImageIcon, SunIcon } from '@radix-ui/react-icons';
 import { cookies } from 'next/headers';
 import { LIGHT_COLORS, DARK_COLORS } from '@/constants';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import DarkLightToggle from '@/components/DarkLightToggle';
 import NavBarButtons from '@/components/NavBarButtons';

@@ -284,13 +284,11 @@
 .card-streak {
   font-weight: 600;
   color: var(--color-text);
-  letter-spacing: -0.02em;
-  line-height: 40px;
   font-style: normal;
   font-size: 1.8rem;
-  padding-bottom: 8px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-description {
