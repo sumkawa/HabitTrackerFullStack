@@ -1,17 +1,8 @@
 import React from 'react';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import {
-  HamburgerMenuIcon,
-  DotFilledIcon,
-  CheckIcon,
-  ChevronRightIcon,
-  ExitIcon,
-  PersonIcon,
-  BarChartIcon,
-} from '@radix-ui/react-icons';
+import { PersonIcon, ExitIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
-
 import './styles.css';
 
 const MyProfileDropdown = () => {
@@ -19,61 +10,29 @@ const MyProfileDropdown = () => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <button className='IconButtonNav' aria-label='Customise options'>
-          <HamburgerMenuIcon />
+          <PersonIcon width='24px' height='24px' />
         </button>
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
         <DropdownMenu.Content className='DropdownMenuContent' sideOffset={5}>
-          <DropdownMenu.Sub>
-            <DropdownMenu.SubTrigger className='DropdownMenuSubTrigger'>
-              My Profile
+          <DropdownMenu.Item className='DropdownMenuItem'>
+            <Link href='/habits/profile/' className='dropdownLinks' passHref>
+              Profile
               <div className='RightSlot'>
-                <ChevronRightIcon />
+                <PersonIcon />
               </div>
-            </DropdownMenu.SubTrigger>
-            <DropdownMenu.Portal>
-              <DropdownMenu.SubContent
-                className='DropdownMenuSubContent'
-                sideOffset={2}
-                alignOffset={-5}
-              >
-                <DropdownMenu.Item className='DropdownMenuItem'>
-                  <Link href='/habits/profile'>Dashboard </Link>
-
-                  <div className='RightSlot'>
-                    <PersonIcon />
-                  </div>
-                </DropdownMenu.Item>
-                <DropdownMenu.Item className='DropdownMenuItem'>
-                  Analytics
-                  <div className='RightSlot'>
-                    <BarChartIcon />
-                  </div>
-                </DropdownMenu.Item>
-                <DropdownMenu.Item className='DropdownMenuItem'>
-                  Name Window…
-                </DropdownMenu.Item>
-                <DropdownMenu.Separator className='DropdownMenu.Separator' />
-                <DropdownMenu.Item className='DropdownMenuItem'>
-                  Developer Tools
-                </DropdownMenu.Item>
-              </DropdownMenu.SubContent>
-            </DropdownMenu.Portal>
-          </DropdownMenu.Sub>
+            </Link>
+          </DropdownMenu.Item>
 
           <DropdownMenu.Separator className='DropdownMenuSeparator' />
-
           <DropdownMenu.Item className='DropdownMenuItem'>
-            New Tab
-          </DropdownMenu.Item>
-          <DropdownMenu.Item className='DropdownMenuItem'>
-            <a href='/api/auth/logout' style={{ textDecoration: 'none' }}>
+            <a href='/api/auth/logout' className='dropdownLinks'>
               Log Out
-            </a>{' '}
-            <div className='RightSlot'>
-              <ExitIcon />
-            </div>
+              <div className='RightSlot'>
+                <ExitIcon />
+              </div>
+            </a>
           </DropdownMenu.Item>
 
           <DropdownMenu.Arrow className='DropdownMenuArrow' />

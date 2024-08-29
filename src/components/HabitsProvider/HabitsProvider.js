@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
-import './styles.css';
-import HabitCard from '../HabitCard';
 import HabitPopover from '../HabitPopover';
-import HabitCardPlaceholder from '../HabitCardPlaceholder';
+import Dashboard from '../Dashboard';
+
+import './styles.css';
 
 export const HabitContext = React.createContext();
 
@@ -33,25 +33,12 @@ function HabitsProvider({ habits, tags, user }) {
   });
 
   return (
-    <HabitContext.Provider value={{ habits, tags, checked, setChecked }}>
+    <HabitContext.Provider value={{ habits, tags, user, checked, setChecked }}>
       <div className='habitsContainer'>
-        <span className='habitsContainerHeroText'>My Habits</span>
-        <div>
-          {habits.length === 0 ? (
-            <HabitCardPlaceholder />
-          ) : (
-            habits.map((habit, index) => (
-              <HabitCard
-                key={`${habit.uuid}-${index}`}
-                habitObject={habit}
-                user={user}
-              />
-            ))
-          )}
-        </div>
         <span className='add-habit'>
           <HabitPopover />
         </span>
+        <Dashboard />
       </div>
     </HabitContext.Provider>
   );

@@ -4,25 +4,31 @@
   user-select: none;
   font-weight: 500;
   line-height: 1;
-  border-radius: 4px;
+  border-radius: 50px;
   font-size: 1.25rem;
   color: white;
   text-decoration: none;
   margin: 12px;
-  background-color: #0090ff;
+  background-image: linear-gradient(
+    45deg,
+    hsl(273deg 98% 24%) 0%,
+    hsl(236deg 59% 38%) 11%,
+    hsl(214deg 100% 36%) 22%,
+    hsl(209deg 100% 40%) 33%,
+    hsl(205deg 100% 44%) 44%,
+    hsl(200deg 100% 46%) 56%,
+    hsl(195deg 100% 48%) 67%,
+    hsl(190deg 100% 49%) 78%,
+    hsl(184deg 100% 49%) 89%,
+    hsl(179deg 100% 55%) 100%
+  );
 }
 .button__sign-up:hover {
-  padding: 8px 12px;
-  outline: none;
-  user-select: none;
-  font-weight: 500;
-  line-height: 1;
-  border-radius: 4px;
-  font-size: 1.25rem;
-  color: white;
-  text-decoration: none;
-  margin: 12px;
-  background-color: #205d9e;
+  background-color: #f7f7f7;
+  color: black;
+  background-image: url('https://www.transparenttextures.com/patterns/bright-squares.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .button__logout {
@@ -47,4 +53,13 @@
   font-size: 1.25rem;
   color: var(--color-text);
   text-decoration: none;
+  border-radius: 50px;
+  border: 1px solid var(--color-text);
+}
+.button__login:hover {
+  background-color: var(--color-text);
+  color: var(--color-background);
+}
+.nav-bar__buttons {
+  font-family: 'Nanum Gothic Coding', monospace;
 }

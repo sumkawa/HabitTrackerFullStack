@@ -17,7 +17,7 @@ function HabitCreationSummary({
   weekdays,
   setDialogOpen,
 }) {
-  const { tags } = React.useContext(HabitContext);
+  const { tags, user } = React.useContext(HabitContext);
   const { createToast } = React.useContext(ToastContext);
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -40,7 +40,7 @@ function HabitCreationSummary({
 
     const formData = new FormData();
     formData.append('name', habitTitle);
-    formData.append('user_uuid', params.uuid);
+    formData.append('user_uuid', user.uuid);
     formData.append('behavior', behavior);
     formData.append('time', time);
     formData.append('location', location);
@@ -117,7 +117,6 @@ function HabitCreationSummary({
           )}
         </div>
       </div>
-      <h3 className='tag-selection'>Tag selection</h3>
       <h3>
         <div className='form__group__paragraph field'>
           <input

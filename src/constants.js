@@ -1,6 +1,7 @@
 export const LIGHT_COLORS = {
   '--color-text': '#1E1F24',
   '--color-background': '#F9F9FB',
+  '--color-dashboard-background': '#111111',
   '--color-secondary': '#70B8FF',
   '--color-border': '#5f606a',
   '--color-widget-background': '#EEEEEE',
@@ -10,7 +11,7 @@ export const LIGHT_COLORS = {
   '--circular-gradient-color': 'rgba(255, 255, 255, 0.8)',
   '--color-glare': '#ffffff',
   '--color-glare-highlight': '#ffffff',
-  '--color-deemphasized-text': 'hsla(0, 0%, 0%, 0.7)',
+  '--color-deemphasized-text': 'hsla(0, 0%, 13%, 0.6)',
   '--habit-card-hover': 'rgba(0, 144, 255, 0.2)',
   '--color-hover': '#B4B4B4',
   '--text-fill-color': 'none',
@@ -20,6 +21,7 @@ export const LIGHT_COLORS = {
 export const DARK_COLORS = {
   '--color-text': '#EEEEF0',
   '--color-background': '#101010',
+  '--color-dashboard-background': '#B4B4B4',
   '--color-primary': '#0090FF',
   '--color-secondary': '#70B8FF',
   '--color-border': '#5f606a',

@@ -22,13 +22,12 @@ const NavBarButtons = () => {
     <div className='nav-bar__buttons'>
       {!user && (
         <>
-          <LoginButton />
           <SignupButton />
+          <LoginButton />
         </>
       )}
       {user && (
         <>
-          <LogoutButton />
           <MyProfileDropdown />
         </>
       )}

@@ -1,7 +1,5 @@
 @import '@radix-ui/colors/green.css';
-body {
-  overflow: hidden;
-}
+
 .popover-container {
   display: flex;
   align-items: center;

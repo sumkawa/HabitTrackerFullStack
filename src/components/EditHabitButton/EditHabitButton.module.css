@@ -189,7 +189,6 @@
 
 .weekDaysSelector input {
   display: none !important;
-  content-align: center;
 }
 
 .weekDaysSelector input[type='checkbox'] + label {
@@ -199,7 +198,6 @@
   height: 40px;
   width: 40px;
   margin: 5px;
-  line-height: 40px;
   text-align: center;
   cursor: pointer;
   font-size: 1.5rem;

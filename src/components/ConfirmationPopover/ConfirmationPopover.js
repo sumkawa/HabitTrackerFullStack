@@ -19,12 +19,21 @@ function ConfirmationPopover({
           <h3 className='PopoverTitle'>{title}</h3>
           <p className='PopoverDescription'>{description}</p>
           <div className='PopoverButtonGroup'>
-            <button className='Button ConfirmButton' onClick={onConfirm}>
-              Confirm
-            </button>
-            <button className='Button CancelButton' onClick={onCancel}>
-              Cancel
-            </button>
+            <Popover.Close asChild>
+              <button className='Button ConfirmButton' onClick={onConfirm}>
+                Confirm
+              </button>
+            </Popover.Close>
+            <Popover.Close asChild>
+              <button
+                className='Button CancelButton'
+                onClick={() => {
+                  onCancel();
+                }}
+              >
+                Cancel
+              </button>
+            </Popover.Close>
           </div>
         </Popover.Content>
       </Popover.Portal>

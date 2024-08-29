@@ -1,14 +1,15 @@
 'use client';
 import React, { useState } from 'react';
-import 'react-calendar-heatmap/dist/styles.css';
-import HabitCalendar from '../HabitCalendar';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import { ArrowLeftIcon } from '@radix-ui/react-icons';
+import { ArrowLeftIcon, RocketIcon } from '@radix-ui/react-icons';
 import { motion } from 'framer-motion';
+import HabitCalendar from '../HabitCalendar';
 import CircularButton from '../CircularButton';
 import { HabitContext } from '../HabitsProvider';
 import EditHabitButton from '../EditHabitButton';
+import TimePicker from 'react-time-picker';
+import 'react-calendar-heatmap/dist/styles.css';
 import './styles.css';
 
 function HabitCard({ habitObject, user }) {
@@ -18,6 +19,15 @@ function HabitCard({ habitObject, user }) {
   const [loading, setLoading] = useState(false);
   const { tags, params } = React.useContext(HabitContext);
   const tag = tags.find((tag) => tag.tag_name === habitObject.tag_name);
+  const [weekdays, setWeekdays] = useState({
+    sunday: habitObject.days_of_week.includes('Sunday'),
+    monday: habitObject.days_of_week.includes('Monday'),
+    tuesday: habitObject.days_of_week.includes('Tuesday'),
+    wednesday: habitObject.days_of_week.includes('Wednesday'),
+    thursday: habitObject.days_of_week.includes('Thursday'),
+    friday: habitObject.days_of_week.includes('Friday'),
+    saturday: habitObject.days_of_week.includes('Saturday'),
+  });
 
   function convertTwentyFourToString(dateString) {
     let hour = Number(dateString.slice(0, 2));
@@ -34,6 +44,8 @@ function HabitCard({ habitObject, user }) {
     const stringTime = `${hour}:${minute} ${amOrPm}`;
     return stringTime;
   }
+
+  const weekdaysList = Object.keys(weekdays);
 
   return (
     <Dialog.Root
@@ -69,7 +81,24 @@ function HabitCard({ habitObject, user }) {
                 </div>
 
                 <div className='card-streak'>
-                  <p>{habitObject.streak}</p>
+                  <RocketIcon width='20' height='20' className='rocketIcon' />
+                  <p className='rocketNumber'>{habitObject.streak}</p>
+                </div>
+              </div>
+              <div className='weekdayInputContainer'>
+                <div className='weekDaysSelector'>
+                  {weekdaysList.map((day, index) => (
+                    <React.Fragment key={day}>
+                      <input
+                        type='checkbox'
+                        id={`weekday-${day}-${habitObject.uuid}`}
+                        className='weekday'
+                        checked={weekdays[day]}
+                        onChange={() => handleWeekdayChange(day)}
+                      />
+                      <label htmlFor={`weekday-${day}`}></label>
+                    </React.Fragment>
+                  ))}
                 </div>
               </div>
               <p className='card-description'>
@@ -134,12 +163,12 @@ function HabitCard({ habitObject, user }) {
               <div
                 style={{
                   display: 'flex',
-                  marginTop: 25,
+                  marginTop: 80,
                   justifyContent: 'flex-end',
                 }}
               >
                 <Dialog.Close asChild>
-                  <button className='Button green'>Save changes</button>
+                  <button className='Button green'>Save</button>
                 </Dialog.Close>
               </div>
             </motion.div>

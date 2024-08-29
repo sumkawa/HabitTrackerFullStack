@@ -251,7 +251,7 @@ function EditHabitButton({ editOpen, setEditOpen, habit, user }) {
                 <ConfirmationPopover
                   title='Delete Habit'
                   description='Are you sure you want to delete this habit? This will delete all associated data.'
-                  onConfirm={handleDeleteHabit} // Handle deletion
+                  onConfirm={handleDeleteHabit}
                   onCancel={handleCancelPopoverClose}
                 >
                   <button

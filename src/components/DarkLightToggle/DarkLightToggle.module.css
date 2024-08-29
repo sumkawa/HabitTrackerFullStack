@@ -6,11 +6,11 @@
   height: 4rem;
   border: none;
   border-radius: 1000px;
+  margin-right: 14px;
   background: transparent;
-  color: inherit;
+  color: var(--color-deemphasized-text);
   cursor: pointer;
 }
 .wrapper:hover {
-  transition: transform 0.2s ease;
-  transform: scale(1.2);
+  color: var(--color-text);
 }

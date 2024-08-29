@@ -3,13 +3,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  position: relative; /* For absolute positioning of the sidebar */
+  position: relative;
   padding: 0 0.5rem;
 }
 
 .habitsHeader {
-  text-align: center; /* Center text */
-  margin-bottom: 20px; /* Space below the header */
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .heroText {
@@ -33,8 +33,8 @@
 }
 .sidebar {
   position: absolute;
-  right: 0; /* Position the sidebar to the right */
-  top: 50%; /* Center the sidebar vertically */
+  right: 0;
+  top: 50%;
   transform: translateY(-50%);
   width: 250px;
   padding: 2rem;
@@ -71,10 +71,28 @@
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center content horizontally */
-  flex: 1;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  padding: 50px;
+  border-radius: 30px;
+}
+
+@media (max-width: 1120px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 3;
+    margin-top: 0;
+    height: 100%;
+  }
+}
+
+.contentItem {
+  margin: 1rem;
+  margin-top: 0;
+  height: 100%;
 }
 
 .AvatarRoot {
@@ -171,4 +189,22 @@
 .notFoundIcon {
   height: 100px;
   width: 100px;
+}
+
+.sidebar {
+  flex: 1;
+  margin-left: 2rem;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+  margin-bottom: 1rem;
+}
+
+.sidebar p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
 }
