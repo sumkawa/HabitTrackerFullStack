@@ -203,6 +203,8 @@ export async function updateHabit(formData) {
   } catch (error) {
     throw new Error(error);
   }
+  console.log('revalidating...');
+  revalidatePath('/habits/profile');
 }
 
 export async function deleteHabit(habitUuid, userUuid) {
@@ -214,5 +216,5 @@ export async function deleteHabit(habitUuid, userUuid) {
   } catch (error) {
     throw new Error('Failed to delete habit');
   }
-  revalidatePath('/dashboard/habits');
+  revalidatePath('/habits/profile');
 }

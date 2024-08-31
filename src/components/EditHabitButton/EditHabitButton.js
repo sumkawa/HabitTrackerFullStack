@@ -56,7 +56,6 @@ function EditHabitButton({ editOpen, setEditOpen, habit, user }) {
 
     return `${hour}:${minute} ${amOrPm}`;
   }
-
   const handleSaveChanges = async () => {
     if (loading) return;
     const daysOfWeek = Object.keys(weekdays)

@@ -7,6 +7,7 @@ import styles from './ProfileContent.module.css';
 import AnalyticsProvider from '../AnalyticsProvider';
 
 export default function ProfileContent({ user, habits, tags }) {
+  console.log('profile content habits', habits);
   return (
     <div className={styles.container}>
       <div className={styles.habitsHeader}>
@@ -16,7 +17,6 @@ export default function ProfileContent({ user, habits, tags }) {
       <section className={styles.content}>
         <div className={styles.contentItem}>
           <HabitsProvider habits={habits} tags={tags} user={user} />
-          <ToastShelf />
         </div>
         <div className={styles.contentItem}>
           <AnalyticsProvider user={user} habits={habits} />
