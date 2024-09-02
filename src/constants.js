@@ -16,6 +16,7 @@ export const LIGHT_COLORS = {
   '--color-hover': '#B4B4B4',
   '--text-fill-color': 'none',
   '--hero-text-shadow': 'white',
+  '--color-dark-background': '#EFF0F3',
 };
 
 export const DARK_COLORS = {
@@ -37,4 +38,5 @@ export const DARK_COLORS = {
   '--color-hover': '#B4B4B4',
   '--text-fill-color': 'transparent',
   '--hero-text-shadow': 'rgba(0, 87, 255, 0.3)',
+  '--color-dark-background': '#080808',
 };

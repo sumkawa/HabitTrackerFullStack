@@ -8,6 +8,7 @@ import {
 import { getSession } from '@auth0/nextjs-auth0';
 import ProfileContent from '@/components/ProfileContent';
 import ToastShelf from '@/components/ToastShelf';
+import { formatDateToTimeZone } from '../../../helpers/dateUtils'; // Import the utility function
 
 export default async function Profile() {
   const session = await getSession();
@@ -36,7 +37,54 @@ export default async function Profile() {
   const tags = await fetchTags(dbUser.uuid);
 
   const newHabits = habits.map((habit) => ({ ...habit }));
-  console.log(newHabits);
+
+  let totalExpected = 0;
+  let totalCompleted = 0;
+
+  function calculateExpectedDays(habit) {
+    const startDate = new Date(habit.date_started);
+    const endDate = new Date();
+    let expectedDays = 0;
+
+    for (let d = startDate; d <= endDate; d.setDate(d.getDate() + 1)) {
+      const dayOfWeek = formatDateToTimeZone(d, dbUser.timezone, {
+        weekday: 'long',
+      });
+      if (habit.days_of_week.includes(dayOfWeek)) {
+        expectedDays++;
+      }
+    }
+
+    return expectedDays;
+  }
+
+  function calculateCompletedDays(habit) {
+    return habit.dates_repeated.filter((date) => {
+      const completedDate = formatDateToTimeZone(date.date, dbUser.timezone);
+      const dayOfWeek = formatDateToTimeZone(completedDate, dbUser.timezone, {
+        weekday: 'long',
+      });
+      return habit.days_of_week.includes(dayOfWeek);
+    }).length;
+  }
+
+  const habitCompletionRates = habits.map((habit) => {
+    const expectedDays = calculateExpectedDays(habit);
+    const completedDays = calculateCompletedDays(habit);
+    totalExpected += expectedDays;
+    totalCompleted += completedDays;
+    const completionRate =
+      expectedDays > 0 ? (completedDays / expectedDays) * 100 : 0;
+
+    return {
+      habit_uuid: habit.uuid,
+      completionRate: completionRate.toFixed(2),
+    };
+  });
+
+  const cumulativeCompletionRate =
+    totalExpected > 0 ? (totalCompleted / totalExpected) * 100 : 0;
+  console.log(dbUser);
   return (
     <main>
       <ProfileContent
@@ -44,6 +92,8 @@ export default async function Profile() {
         user={dbUser}
         habits={newHabits}
         tags={tags}
+        completionRates={habitCompletionRates}
+        cumulativeCompletionRate={cumulativeCompletionRate}
       />
       <ToastShelf />
     </main>

@@ -1,16 +1,13 @@
 'use client';
 import React from 'react';
-
-import { motion } from 'framer-motion';
-import { RowSpacingIcon, ChevronDownIcon } from '@radix-ui/react-icons';
+import Link from 'next/link';
 import { HabitContext } from '../HabitsProvider';
 import HabitCard from '../HabitCard';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import * as Collapsible from '@radix-ui/react-collapsible';
 
 import styles from './dashboard.module.css';
-
-function Dashboard() {
+import './styles.css';
+function Dashboard({ isAll }) {
   const [collapsibleOpen, setCollapsibleOpen] = React.useState(false);
   const { habits, tags, user, checked, setChecked } =
     React.useContext(HabitContext);
@@ -40,61 +37,53 @@ function Dashboard() {
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.todaysHabits}>
-        <h2 className={styles.sectionTitle}>Today's Habits</h2>
+        <h2 className={styles.sectionTitle}>
+          {isAll ? 'All Habits' : "Today's Habits"}
+        </h2>
+        <Link
+          href='/habits/profile/all-habits'
+          className={styles.viewAllButton}
+          passHref
+        >
+          <button>View All Habits</button>
+        </Link>
         {habitsToday.length === 0 ? (
           <p>No habits scheduled for today.</p>
         ) : (
-          habitsToday.map((habit, index) => (
-            <HabitCard
-              key={`${habit.uuid}-${index}`}
-              habitObject={habit}
-              user={user}
-            />
-          ))
+          <ScrollArea.Root className='ScrollAreaRoot'>
+            <ScrollArea.Viewport className='ScrollAreaViewport'>
+              {isAll
+                ? habits.map((habit, index) => (
+                    <HabitCard
+                      key={`${habit.uuid}-${index}`}
+                      habitObject={habit}
+                      user={user}
+                    />
+                  ))
+                : habitsToday.map((habit, index) => (
+                    <HabitCard
+                      key={`${habit.uuid}-${index}`}
+                      habitObject={habit}
+                      user={user}
+                    />
+                  ))}
+            </ScrollArea.Viewport>
+            <ScrollArea.Scrollbar
+              className='ScrollAreaScrollbar'
+              orientation='vertical'
+            >
+              <ScrollArea.Thumb className='ScrollAreaThumb' />
+            </ScrollArea.Scrollbar>
+            <ScrollArea.Scrollbar
+              className='ScrollAreaScrollbar'
+              orientation='horizontal'
+            >
+              <ScrollArea.Thumb className='ScrollAreaThumb' />
+            </ScrollArea.Scrollbar>
+            <ScrollArea.Corner className='ScrollAreaCorner' />
+          </ScrollArea.Root>
         )}
       </div>
-
-      <Collapsible.Root
-        className={styles.collapsibleRoot}
-        open={collapsibleOpen}
-        onOpenChange={setCollapsibleOpen}
-      >
-        <Collapsible.Trigger asChild>
-          <motion.button
-            className={styles.IconButton}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.div
-              initial={{ rotate: 0 }}
-              animate={{ rotate: collapsibleOpen ? 180 : 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ChevronDownIcon width='30px' height='30px' />
-            </motion.div>
-          </motion.button>
-        </Collapsible.Trigger>
-        <Collapsible.Content className={styles.collapsibleContent}>
-          <ScrollArea.Root className={styles.scrollAreaRoot}>
-            <ScrollArea.Viewport className={styles.scrollAreaViewport}>
-              {otherHabits.length === 0 ? (
-                <p>No other habits.</p>
-              ) : (
-                otherHabits.map((habit, index) => (
-                  <HabitCard
-                    key={`${habit.uuid}-${index}`}
-                    habitObject={habit}
-                    user={user}
-                  />
-                ))
-              )}
-            </ScrollArea.Viewport>
-            <ScrollArea.Scrollbar orientation='vertical'>
-              <ScrollArea.Thumb />
-            </ScrollArea.Scrollbar>
-          </ScrollArea.Root>
-        </Collapsible.Content>
-      </Collapsible.Root>
     </div>
   );
 }

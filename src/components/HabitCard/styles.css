@@ -14,7 +14,6 @@
   border-radius: 26px;
   border: 0.5px solid var(--color-border);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  max-width: 554px;
   margin: 15px 0px;
 }
 .behavior {
@@ -168,7 +167,6 @@
 
 .card {
   max-width: 550px;
-  width: 100%;
   margin-inline: auto;
   border: 0;
   height: fit-content;
@@ -293,7 +291,6 @@
   border-radius: 20px;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-primary);
 }
 
 .card-description {
@@ -541,9 +538,24 @@ input {
   margin-top: 5px;
   margin-left: 2px;
 }
-
+.frownIcon {
+  margin-top: 5px;
+}
 .rocketNumber {
   font-size: 1.5rem;
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+.zero-streak {
+  background-color: #3b9eff;
+}
+
+.streak-active {
+  background-image: linear-gradient(
+    285deg,
+    hsl(53deg 100% 56%) 0%,
+    hsl(26deg 100% 54%) 43%,
+    hsl(0deg 100% 52%) 100%
+  );
 }

@@ -1,15 +1,24 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { PersonIcon, ExitIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import './styles.css';
 
 const MyProfileDropdown = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpenChange = (isOpen) => {
+    setOpen(isOpen);
+  };
+
+  const handleProfileClick = () => {
+    setOpen(false);
+  };
+
   return (
-    <DropdownMenu.Root>
+    <DropdownMenu.Root open={open} onOpenChange={handleOpenChange}>
       <DropdownMenu.Trigger asChild>
-        <button className='IconButtonNav' aria-label='Customise options'>
+        <button className='IconButtonNav' aria-label='My Profile'>
           <PersonIcon width='24px' height='24px' />
         </button>
       </DropdownMenu.Trigger>
@@ -17,7 +26,12 @@ const MyProfileDropdown = () => {
       <DropdownMenu.Portal>
         <DropdownMenu.Content className='DropdownMenuContent' sideOffset={5}>
           <DropdownMenu.Item className='DropdownMenuItem'>
-            <Link href='/habits/profile/' className='dropdownLinks' passHref>
+            <Link
+              href='/habits/profile/'
+              className='dropdownLinks'
+              passHref
+              onClick={handleProfileClick}
+            >
               Profile
               <div className='RightSlot'>
                 <PersonIcon />

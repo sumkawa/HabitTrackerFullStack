@@ -3,8 +3,10 @@ import styles from './CircularProgressBar.module.css';
 
 const CircularProgressBar = ({ percentageVal, label }) => {
   const percentage = percentageVal > 100 ? 100 : percentageVal;
-  const radius = 50;
-  const strokeWidth = 10;
+
+  // Increase the radius for a larger circle
+  const radius = 80; // Increase this value to make the circle bigger
+  const strokeWidth = 5; // You might want to increase this slightly as well
   const normalizedRadius = radius - strokeWidth * 2;
   const circumference = normalizedRadius * 2 * Math.PI;
   const strokeDashoffset = circumference - (percentage / 100.0) * circumference;
@@ -27,7 +29,7 @@ const CircularProgressBar = ({ percentageVal, label }) => {
           cy={radius}
         />
         <circle
-          stroke='url(#gradient)'
+          stroke='white'
           fill='transparent'
           strokeWidth={strokeWidth}
           strokeDasharray={circumference + ' ' + circumference}
@@ -43,13 +45,13 @@ const CircularProgressBar = ({ percentageVal, label }) => {
           y='50%'
           dy='.3em'
           textAnchor='middle'
-          fontSize='20px'
-          fill='#7B7B7B'
+          fontSize='28px' // Adjust font size accordingly
+          fill='white'
         >
           {percentage}%
         </text>
       </svg>
-      <label>{label}</label>
+      <label className={styles.label}>{label}</label>
     </div>
   );
 };

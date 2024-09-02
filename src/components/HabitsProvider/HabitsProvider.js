@@ -2,12 +2,11 @@
 import React from 'react';
 import HabitPopover from '../HabitPopover';
 import Dashboard from '../Dashboard';
-
 import './styles.css';
 
 export const HabitContext = React.createContext();
 
-function HabitsProvider({ habits, tags, user }) {
+function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
   const [checked, setChecked] = React.useState(() => {
     const getTodayInUserTimezone = (timezone) => {
       const date = new Date().toLocaleString('en-US', { timeZone: timezone });
@@ -33,12 +32,14 @@ function HabitsProvider({ habits, tags, user }) {
   });
 
   return (
-    <HabitContext.Provider value={{ habits, tags, user, checked, setChecked }}>
+    <HabitContext.Provider
+      value={{ habits, tags, user, checked, setChecked, completionRates }}
+    >
       <div className='habitsContainer'>
         <span className='add-habit'>
           <HabitPopover />
         </span>
-        <Dashboard />
+        <Dashboard isAll={isAll} />
       </div>
     </HabitContext.Provider>
   );

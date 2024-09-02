@@ -51,3 +51,7 @@
 .react-calendar-heatmap .color-github-1 {
   fill: #44a340;
 }
+
+.react-calendar-heatmap .color-missed {
+  fill: #e5484d;
+}

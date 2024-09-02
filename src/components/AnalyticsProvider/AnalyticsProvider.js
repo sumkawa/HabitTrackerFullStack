@@ -3,15 +3,28 @@ import React from 'react';
 import styles from './AnalyticsProvider.module.css';
 import AnalyticsCard from '../AnalyticsCard';
 import FriendsCard from '../FriendsCard';
+import CompletionRateCard from '../CompletionRateCard';
 
 export const AnalyticsContext = React.createContext();
 
-function AnalyticsProvider({ user, habits }) {
+function AnalyticsProvider({
+  user,
+  habits,
+  completionRates,
+  cumulativeCompletionRate,
+}) {
   return (
-    <AnalyticsContext.Provider value={{ user, habits }}>
+    <AnalyticsContext.Provider
+      value={{ user, habits, completionRates, cumulativeCompletionRate }}
+    >
       <div className={styles.analyticsProviderContainer}>
-        <AnalyticsCard />
-        <FriendsCard />
+        <div className={styles.analyticsCardContainer}>
+          <AnalyticsCard />
+        </div>
+        <div className={styles.friendsCardsContainer}>
+          <CompletionRateCard />
+          <FriendsCard />
+        </div>
       </div>
     </AnalyticsContext.Provider>
   );

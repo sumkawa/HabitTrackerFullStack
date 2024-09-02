@@ -1,3 +1,14 @@
+.content {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  padding: 50px;
+  border-radius: 30px;
+  gap: 20px;
+  width: 100%;
+  align-items: stretch;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -5,6 +16,10 @@
   flex-direction: column;
   position: relative;
   padding: 0 0.5rem;
+  background-color: var(--color-dark-background);
+  padding: 40px;
+  border-radius: 30px;
+  margin: 20px;
 }
 
 .habitsHeader {
@@ -70,13 +85,6 @@
   background-color: #e0e0e0;
 }
 
-.content {
-  display: grid;
-  grid-template-columns: 60% 40%;
-  padding: 50px;
-  border-radius: 30px;
-}
-
 @media (max-width: 1120px) {
   .content {
     display: flex;
@@ -87,12 +95,6 @@
     margin-top: 0;
     height: 100%;
   }
-}
-
-.contentItem {
-  margin: 1rem;
-  margin-top: 0;
-  height: 100%;
 }
 
 .AvatarRoot {

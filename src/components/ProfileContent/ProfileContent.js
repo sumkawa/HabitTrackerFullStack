@@ -1,13 +1,15 @@
-'use client';
-
 import React from 'react';
 import HabitsProvider from '@/components/HabitsProvider';
-import ToastShelf from '@/components/ToastShelf';
 import styles from './ProfileContent.module.css';
 import AnalyticsProvider from '../AnalyticsProvider';
 
-export default function ProfileContent({ user, habits, tags }) {
-  console.log('profile content habits', habits);
+export default function ProfileContent({
+  user,
+  habits,
+  tags,
+  completionRates,
+  cumulativeCompletionRate,
+}) {
   return (
     <div className={styles.container}>
       <div className={styles.habitsHeader}>
@@ -16,10 +18,21 @@ export default function ProfileContent({ user, habits, tags }) {
       </div>
       <section className={styles.content}>
         <div className={styles.contentItem}>
-          <HabitsProvider habits={habits} tags={tags} user={user} />
+          <AnalyticsProvider
+            user={user}
+            habits={habits}
+            completionRates={completionRates}
+            cumulativeCompletionRate={cumulativeCompletionRate}
+          />
         </div>
         <div className={styles.contentItem}>
-          <AnalyticsProvider user={user} habits={habits} />
+          <HabitsProvider
+            habits={habits}
+            tags={tags}
+            user={user}
+            completionRates={completionRates}
+            isAll={false}
+          />
         </div>
       </section>
     </div>
