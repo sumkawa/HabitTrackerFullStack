@@ -1,23 +1,34 @@
 'use client';
 import React, { useState } from 'react';
-import 'react-calendar-heatmap/dist/styles.css';
-import HabitCalendar from '../HabitCalendar';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import { ArrowLeftIcon } from '@radix-ui/react-icons';
+import { ArrowLeftIcon, RocketIcon } from '@radix-ui/react-icons';
+import { Frown } from 'react-feather';
 import { motion } from 'framer-motion';
+import HabitCalendar from '../HabitCalendar';
 import CircularButton from '../CircularButton';
 import { HabitContext } from '../HabitsProvider';
 import EditHabitButton from '../EditHabitButton';
+import 'react-calendar-heatmap/dist/styles.css';
 import './styles.css';
 
 function HabitCard({ habitObject, user }) {
-  const { checked, setChecked } = React.useContext(HabitContext);
+  const { checked, setChecked, completionRates } =
+    React.useContext(HabitContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false); // New state for EditHabitButton
   const [loading, setLoading] = useState(false);
   const { tags, params } = React.useContext(HabitContext);
   const tag = tags.find((tag) => tag.tag_name === habitObject.tag_name);
+  const [weekdays, setWeekdays] = useState({
+    sunday: habitObject.days_of_week.includes('Sunday'),
+    monday: habitObject.days_of_week.includes('Monday'),
+    tuesday: habitObject.days_of_week.includes('Tuesday'),
+    wednesday: habitObject.days_of_week.includes('Wednesday'),
+    thursday: habitObject.days_of_week.includes('Thursday'),
+    friday: habitObject.days_of_week.includes('Friday'),
+    saturday: habitObject.days_of_week.includes('Saturday'),
+  });
 
   function convertTwentyFourToString(dateString) {
     let hour = Number(dateString.slice(0, 2));
@@ -34,7 +45,12 @@ function HabitCard({ habitObject, user }) {
     const stringTime = `${hour}:${minute} ${amOrPm}`;
     return stringTime;
   }
-
+  const weekdaysList = Object.keys(weekdays);
+  const streakColor =
+    habitObject.streak === 0 ? 'zero-streak' : 'streak-active';
+  const habitCompletionRate = completionRates.find((rate) => {
+    return rate.habit_uuid === habitObject.uuid;
+  })?.completionRate;
   return (
     <Dialog.Root
       open={modalOpen}
@@ -68,8 +84,30 @@ function HabitCard({ habitObject, user }) {
                   </div>
                 </div>
 
-                <div className='card-streak'>
-                  <p>{habitObject.streak}</p>
+                <div className={`card-streak ${streakColor}`}>
+                  {streakColor === 'zero-streak' ? (
+                    <Frown width='20' height='20' className='frownIcon' />
+                  ) : (
+                    <RocketIcon width='20' height='20' className='rocketIcon' />
+                  )}
+
+                  <p className='rocketNumber'>{habitObject.streak}</p>
+                </div>
+              </div>
+              <div className='weekdayInputContainer'>
+                <div className='weekDaysSelector'>
+                  {weekdaysList.map((day, index) => (
+                    <React.Fragment key={day}>
+                      <input
+                        type='checkbox'
+                        id={`weekday-${day}-${habitObject.uuid}`}
+                        className='weekday'
+                        checked={weekdays[day]}
+                        onChange={() => handleWeekdayChange(day)}
+                      />
+                      <label htmlFor={`weekday-${day}`}></label>
+                    </React.Fragment>
+                  ))}
                 </div>
               </div>
               <p className='card-description'>
@@ -115,13 +153,15 @@ function HabitCard({ habitObject, user }) {
                 {habitObject.name}
               </Dialog.Title>
               <Dialog.Description className='DialogDescription'>
-                Make changes to your profile here. Click save when you're done.
+                View analytics associated with this specific habit.
               </Dialog.Description>
               <ScrollArea.Root className='ScrollAreaRoot'>
                 <ScrollArea.Viewport className='ScrollAreaViewport'>
                   <HabitCalendar
                     values={habitObject.dates_repeated}
                     startDate={habitObject.date_started}
+                    daysOfWeek={habitObject.days_of_week}
+                    user={user}
                   />
                 </ScrollArea.Viewport>
                 <ScrollArea.Scrollbar orientation='vertical'>
@@ -131,15 +171,22 @@ function HabitCard({ habitObject, user }) {
                   <ScrollArea.Thumb />
                 </ScrollArea.Scrollbar>
               </ScrollArea.Root>
+              <div>
+                You complete this habit at a rate of {habitCompletionRate}%
+              </div>
+              <div>
+                Your longest streak for this habit is{' '}
+                {habitObject.longest_streak}
+              </div>
               <div
                 style={{
                   display: 'flex',
-                  marginTop: 25,
+                  marginTop: 80,
                   justifyContent: 'flex-end',
                 }}
               >
                 <Dialog.Close asChild>
-                  <button className='Button green'>Save changes</button>
+                  <button className='Button green'>Save</button>
                 </Dialog.Close>
               </div>
             </motion.div>

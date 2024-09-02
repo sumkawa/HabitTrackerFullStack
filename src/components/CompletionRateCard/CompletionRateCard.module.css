@@ -1,0 +1,71 @@
+.analyticsProviderContainer {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--color-border);
+}
+
+.analyticsContainer {
+  border: 1px solid white;
+  border-radius: 25px;
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start; /* Align contents to the left */
+  background-image: linear-gradient(
+    55deg,
+    hsl(23deg 100% 56%) 0%,
+    hsl(11deg 100% 54%) 43%,
+    hsl(0deg 100% 52%) 100%
+  );
+}
+
+.analyticsRow {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start; /* Align items to the left */
+  width: 100%; /* Ensure it takes full width */
+}
+
+.sectionTitle {
+  text-shadow: rgba(255, 255, 255, 0.2) 0px 0px 4px;
+  font-size: 1.3rem;
+  text-align: left;
+  width: 100%; /* Ensure title takes full width */
+}
+
+@media (max-width: 1120px) {
+  .friendsContainer {
+    border: 1px solid var(--color-border);
+    border-radius: 25px;
+    padding: 20px;
+    margin: 10px 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 615px;
+  }
+}
+
+.statText {
+  font-size: 4rem;
+  text-align: left;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.analyticsButton {
+  padding: 8px 10px;
+  background-color: white;
+  color: black;
+  border-radius: 20px;
+  text-decoration: none;
+}
+.analyticsButton:hover {
+  background-color: black;
+  color: white;
+}

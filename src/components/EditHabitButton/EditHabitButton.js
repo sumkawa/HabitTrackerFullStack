@@ -56,7 +56,6 @@ function EditHabitButton({ editOpen, setEditOpen, habit, user }) {
 
     return `${hour}:${minute} ${amOrPm}`;
   }
-
   const handleSaveChanges = async () => {
     if (loading) return;
     const daysOfWeek = Object.keys(weekdays)
@@ -251,7 +250,7 @@ function EditHabitButton({ editOpen, setEditOpen, habit, user }) {
                 <ConfirmationPopover
                   title='Delete Habit'
                   description='Are you sure you want to delete this habit? This will delete all associated data.'
-                  onConfirm={handleDeleteHabit} // Handle deletion
+                  onConfirm={handleDeleteHabit}
                   onCancel={handleCancelPopoverClose}
                 >
                   <button

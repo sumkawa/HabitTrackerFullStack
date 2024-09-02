@@ -1,6 +1,7 @@
 export const LIGHT_COLORS = {
   '--color-text': '#1E1F24',
   '--color-background': '#F9F9FB',
+  '--color-dashboard-background': '#111111',
   '--color-secondary': '#70B8FF',
   '--color-border': '#5f606a',
   '--color-widget-background': '#EEEEEE',
@@ -10,16 +11,18 @@ export const LIGHT_COLORS = {
   '--circular-gradient-color': 'rgba(255, 255, 255, 0.8)',
   '--color-glare': '#ffffff',
   '--color-glare-highlight': '#ffffff',
-  '--color-deemphasized-text': 'hsla(0, 0%, 0%, 0.7)',
+  '--color-deemphasized-text': 'hsla(0, 0%, 13%, 0.6)',
   '--habit-card-hover': 'rgba(0, 144, 255, 0.2)',
   '--color-hover': '#B4B4B4',
   '--text-fill-color': 'none',
   '--hero-text-shadow': 'white',
+  '--color-dark-background': '#EFF0F3',
 };
 
 export const DARK_COLORS = {
   '--color-text': '#EEEEF0',
   '--color-background': '#101010',
+  '--color-dashboard-background': '#B4B4B4',
   '--color-primary': '#0090FF',
   '--color-secondary': '#70B8FF',
   '--color-border': '#5f606a',
@@ -35,4 +38,5 @@ export const DARK_COLORS = {
   '--color-hover': '#B4B4B4',
   '--text-fill-color': 'transparent',
   '--hero-text-shadow': 'rgba(0, 87, 255, 0.3)',
+  '--color-dark-background': '#080808',
 };

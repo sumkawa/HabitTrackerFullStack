@@ -1,0 +1,58 @@
+.scrollAreaRoot {
+  height: 100px; /* Adjust this height based on your layout */
+  border-radius: 4px;
+  overflow-y: scroll;
+  background-color: transparent;
+  --scrollbar-size: 10px;
+}
+
+.scrollAreaViewport {
+  padding: 10px;
+}
+
+.scrollAreaScrollbar {
+  display: flex;
+  user-select: none;
+  touch-action: none;
+  padding: 2px;
+  background: rgba(0, 0, 0, 0.1);
+  transition: background 160ms ease-out;
+}
+
+.scrollAreaScrollbar:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.scrollAreaThumb {
+  flex: 1;
+  background: #007bff;
+  border-radius: var(--scrollbar-size);
+}
+
+.scrollAreaCorner {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.friendsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.friendItem {
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.friendEmail {
+  font-weight: bold;
+  color: #333333;
+}
+
+.friendCompleted {
+  font-size: 0.9em;
+  color: #666666;
+}

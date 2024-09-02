@@ -1,0 +1,126 @@
+.dashboardContainer {
+  padding: 20px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sectionTitle {
+  text-shadow: rgba(255, 255, 255, 0.2) 0px 0px 4px;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-top: -20px;
+}
+
+.collapsibleRoot {
+  margin-top: 20px;
+}
+
+.collapsibleContent {
+  margin-top: 10px;
+}
+
+.collapsibleContent {
+  overflow: hidden;
+}
+.collapsibleContent[data-state='open'] {
+  animation: slideDown 300ms ease-out;
+}
+.collapsibleContent[data-state='closed'] {
+  animation: slideUp 300ms ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+.collapsibleTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.IconButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.IconButton hr {
+  border: none;
+  height: 2px;
+  background-color: currentColor;
+}
+
+.collapsibleButtonWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.horizontalContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.animatedLine {
+  flex-grow: 1;
+  height: 2px;
+  background-color: currentColor;
+  border: none;
+  margin-right: 8px;
+}
+
+.middleButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todaysHabits {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.viewAllButton {
+  padding: 8px 10px;
+  background-color: white;
+  color: black;
+  border-radius: 20px;
+  text-decoration: none;
+  margin: 10px auto 0px;
+}
+.viewAllButton:hover {
+  background-color: black;
+  color: white;
+}

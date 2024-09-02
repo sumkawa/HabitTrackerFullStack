@@ -7,6 +7,7 @@ import { FaceIcon, ImageIcon, SunIcon } from '@radix-ui/react-icons';
 import { cookies } from 'next/headers';
 import { LIGHT_COLORS, DARK_COLORS } from '@/constants';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import DarkLightToggle from '@/components/DarkLightToggle';
 import NavBarButtons from '@/components/NavBarButtons';
@@ -25,14 +26,14 @@ const MainNavBar = () => {
           <NavigationMenu.Item>
             <NavigationMenu.Link asChild>
               <Link href='/' className='NavigationMenuLink'>
-                Home
+                <p className='navText'>Home</p>
               </Link>
             </NavigationMenu.Link>
           </NavigationMenu.Item>
           <NavigationMenu.Item>
             <NavigationMenu.Link asChild>
               <Link href='/habits' className='NavigationMenuLink'>
-                Habits
+                <p className='navText'>Habits</p>
               </Link>
             </NavigationMenu.Link>
           </NavigationMenu.Item>
@@ -42,7 +43,7 @@ const MainNavBar = () => {
                 href='https://github.com/radix-ui'
                 className='NavigationMenuLink'
               >
-                Github
+                <p className='navText'>Github</p>
               </Link>
             </NavigationMenu.Link>
           </NavigationMenu.Item>
