@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import styles from './FriendsList.module.css';
 import { AnalyticsContext } from '../AnalyticsProvider';
 import { fetchFriendsDetails } from '../../app/lib/actions';
+import styles from './FriendsList.module.css';
 import './styles.css';
+
 function FriendsList() {
   const { user } = React.useContext(AnalyticsContext);
   const [friendsDetails, setFriendsDetails] = useState([]);
@@ -22,8 +23,8 @@ function FriendsList() {
   }, [user.friends]);
   console.log('friends: ', friendsDetails);
   return (
-    <ScrollArea.Root className={styles.scrollAreaRoot}>
-      <ScrollArea.Viewport className={styles.scrollAreaViewport}>
+    <ScrollArea.Root className='ScrollAreaRootFriends'>
+      <ScrollArea.Viewport className='ScrollAreaViewportFriends'>
         <ul className={styles.friendsList}>
           {friendsDetails.map((friend, index) => (
             <li key={index} className={styles.friendItem}>
@@ -40,18 +41,18 @@ function FriendsList() {
         </ul>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar
+        className='ScrollAreaScrollbarFriends'
         orientation='vertical'
-        className={styles.scrollAreaScrollbar}
       >
-        <ScrollArea.Thumb className={styles.scrollAreaThumb} />
+        <ScrollArea.Thumb className='ScrollAreaThumbFriends' />
       </ScrollArea.Scrollbar>
       <ScrollArea.Scrollbar
+        className='ScrollAreaScrollbarFriends'
         orientation='horizontal'
-        className={styles.scrollAreaScrollbar}
       >
-        <ScrollArea.Thumb className={styles.scrollAreaThumb} />
+        <ScrollArea.Thumb className='ScrollAreaThumbFriends' />
       </ScrollArea.Scrollbar>
-      <ScrollArea.Corner className={styles.scrollAreaCorner} />
+      <ScrollArea.Corner className='ScrollAreaCornerFriends' />
     </ScrollArea.Root>
   );
 }

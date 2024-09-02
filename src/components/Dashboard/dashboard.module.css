@@ -121,6 +121,14 @@
   margin: 10px auto 0px;
 }
 .viewAllButton:hover {
-  background-color: black;
-  color: white;
+  background-color: #b4b4b4;
+}
+
+@media screen and (max-width: 420px) {
+  .sectionTitle {
+    text-shadow: rgba(255, 255, 255, 0.2) 0px 0px 4px;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: -20px;
+  }
 }

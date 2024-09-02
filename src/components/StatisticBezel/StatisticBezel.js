@@ -6,7 +6,7 @@ function StatisticBezel({ statistic, description }) {
     <div className={styles.container}>
       <div className={styles.text}>
         <div className={styles.heroText}>{statistic}</div>
-        <div className={styles.descriptionText}>{description}</div>
+        <p className={styles.descriptionText}>{description}</p>
       </div>
     </div>
   );

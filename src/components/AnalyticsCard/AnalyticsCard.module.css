@@ -25,7 +25,17 @@
   padding: 0px 10px;
   width: 100%;
 }
-
+@media screen and (max-width: 630px) {
+  .analyticsRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0px 10px;
+    width: 100%;
+  }
+}
 .sectionTitle {
   text-shadow: rgba(255, 255, 255, 0.2) 0px 0px 4px;
   font-size: 1.3rem;
@@ -33,24 +43,14 @@
   width: 100%; /* Ensure title takes full width */
 }
 
-@media (max-width: 1120px) {
-  .friendsContainer {
-    border: 1px solid var(--color-border);
-    border-radius: 25px;
-    padding: 20px;
-    margin: 10px 0;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 615px;
-  }
-}
-
 .statText {
   font-size: 4rem;
   text-align: left;
   width: 100%;
   margin-top: 70px;
+}
+@media screen and (max-width: 370px) {
+  .analyticsContainer {
+    display: none;
+  }
 }

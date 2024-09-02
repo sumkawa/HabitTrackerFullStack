@@ -74,7 +74,7 @@ function HabitCard({ habitObject, user }) {
                   <div className='card-title'>
                     <p>{habitObject.name}</p>
                   </div>
-                  <div>
+                  <div className='edit-habit-button'>
                     <EditHabitButton
                       editOpen={editOpen}
                       setEditOpen={setEditOpen}

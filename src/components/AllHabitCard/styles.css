@@ -129,20 +129,6 @@
   padding: 0 !important;
   margin-right: auto;
   margin-left: auto;
-
-  @media screen and (min-width: 992px) and (max-width: 1439px) {
-    max-width: 1279px !important;
-    padding: 0 !important;
-    margin: 0 80px !important;
-    width: auto !important;
-  }
-
-  @media screen and (max-width: 991px) {
-    max-width: 959px !important;
-    margin: 0 16px !important;
-    padding: 0 !important;
-    width: auto !important;
-  }
 }
 
 .gradient-cards {
@@ -150,9 +136,6 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
   padding: 30px;
-  @media screen and (max-width: 991px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .container-title {

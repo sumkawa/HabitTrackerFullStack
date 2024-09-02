@@ -16,5 +16,10 @@
 }
 .descriptionText {
   font-size: 1.5rem;
-  font-weight: 500;
+}
+@media screen and (max-width: 420px) {
+  .descriptionText {
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
 }
