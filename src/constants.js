@@ -17,6 +17,7 @@ export const LIGHT_COLORS = {
   '--text-fill-color': 'none',
   '--hero-text-shadow': 'white',
   '--color-dark-background': '#EFF0F3',
+  '--color-background-gradient': 'transparent',
 };
 
 export const DARK_COLORS = {
@@ -39,4 +40,6 @@ export const DARK_COLORS = {
   '--text-fill-color': 'transparent',
   '--hero-text-shadow': 'rgba(0, 87, 255, 0.3)',
   '--color-dark-background': '#080808',
+  '--color-background-gradient':
+    'linear-gradient(to bottom, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.4) 50%, rgba(17, 17, 17, 0.6) 75%, rgba(17, 17, 17, 0.8) 90%, rgba(17, 17, 17, 1) 100%)',
 };

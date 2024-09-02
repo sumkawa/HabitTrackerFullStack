@@ -129,20 +129,6 @@
   padding: 0 !important;
   margin-right: auto;
   margin-left: auto;
-
-  @media screen and (min-width: 992px) and (max-width: 1439px) {
-    max-width: 1279px !important;
-    padding: 0 !important;
-    margin: 0 80px !important;
-    width: auto !important;
-  }
-
-  @media screen and (max-width: 991px) {
-    max-width: 959px !important;
-    margin: 0 16px !important;
-    padding: 0 !important;
-    width: auto !important;
-  }
 }
 
 .gradient-cards {
@@ -150,9 +136,6 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
   padding: 30px;
-  @media screen and (max-width: 991px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .container-title {
@@ -558,4 +541,85 @@ input {
     hsl(26deg 100% 54%) 43%,
     hsl(0deg 100% 52%) 100%
   );
+}
+
+@media screen and (max-width: 750px) {
+  .edit-habit-button {
+    display: none;
+  }
+  .weekdayInputContainer {
+    display: none;
+  }
+  .card-description {
+    font-weight: 600;
+    line-height: 32px;
+    color: var(--color-deemphasized-text);
+    font-size: 0.7rem;
+    max-width: 470px;
+  }
+  /* .card-description {
+    font-weight: 600;
+    line-height: 32px;
+    color: var(--color-deemphasized-text);
+    font-size: 1rem;
+    max-width: 470px;
+  } */
+  .card-streak {
+    display: none;
+  }
+  .habit-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .rocketIcon {
+    display: none;
+  }
+  .frownIcon {
+    display: none;
+  }
+  .card-title {
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    line-height: 40px;
+    font-style: normal;
+    font-size: 1.3rem;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .card-description {
+    display: none;
+  }
+}
+@media screen and (max-width: 460px) {
+  .outline {
+    padding: 5px 6px;
+    border-radius: 26px;
+    border: 0.5px solid var(--color-border);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin: 15px 0px;
+    width: 155px;
+  }
+  .card-title {
+    margin: none;
+  }
+}
+@media screen and (max-width: 420px) {
+  .outline {
+    padding: 5px 6px;
+    border-radius: 26px;
+    border: 0.5px solid var(--color-border);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin: 15px 0px;
+    width: 130px;
+  }
+  .card-title {
+    margin: none;
+  }
 }
