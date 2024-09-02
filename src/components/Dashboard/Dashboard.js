@@ -45,7 +45,7 @@ function Dashboard({ isAll }) {
           className={styles.viewAllButton}
           passHref
         >
-          <button>View All Habits</button>
+          <button>View All</button>
         </Link>
         {habitsToday.length === 0 ? (
           <p>No habits scheduled for today.</p>
