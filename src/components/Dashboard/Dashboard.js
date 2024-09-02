@@ -45,7 +45,7 @@ function Dashboard({ isAll }) {
           className={styles.viewAllButton}
           passHref
         >
-          <button>View All Habits</button>
+          <button>View All</button>
         </Link>
         {habitsToday.length === 0 ? (
           <p>No habits scheduled for today.</p>
@@ -67,6 +67,13 @@ function Dashboard({ isAll }) {
                       user={user}
                     />
                   ))}
+              {otherHabits.map((habit, index) => (
+                <HabitCard
+                  key={`${habit.uuid}-${index}`}
+                  habitObject={habit}
+                  user={user}
+                />
+              ))}
             </ScrollArea.Viewport>
             <ScrollArea.Scrollbar
               className='ScrollAreaScrollbar'
