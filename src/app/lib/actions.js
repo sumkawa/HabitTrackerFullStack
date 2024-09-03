@@ -257,7 +257,7 @@ export async function logHabit(formData) {
   }
 
   const habit = rows[0];
-
+  console.log('habit: ', habit);
   const newStreak =
     habit.last_day_logged === today ? habit.streak : habit.streak + 1;
   const updatedDatesRepeated = [
