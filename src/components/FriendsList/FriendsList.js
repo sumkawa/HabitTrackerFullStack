@@ -21,7 +21,7 @@ function FriendsList() {
 
     loadFriendsDetails();
   }, [user.friends]);
-  console.log('friends: ', friendsDetails);
+
   return (
     <ScrollArea.Root className='ScrollAreaRootFriends'>
       <ScrollArea.Viewport className='ScrollAreaViewportFriends'>
