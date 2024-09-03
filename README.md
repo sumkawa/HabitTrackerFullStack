@@ -1,6 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ![dashboard](https://github.com/user-attachments/assets/a55b0232-970f-4947-bec1-c8139f0237de)
+![Screenshot of Habit Tracking App Dashboard](./assets/dashboard.png)
 
 ## About
 
@@ -22,5 +23,4 @@ pnpm run build
 Then run `pnpm dev` and open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 **Note: Project won't work since .env file is omitted & api keys for production, db, etc. aren't available.**
-
-
+In order for it to work you'll have to add a .env with the following postgres api keys & passwords.
