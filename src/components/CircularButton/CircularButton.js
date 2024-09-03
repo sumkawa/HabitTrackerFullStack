@@ -14,6 +14,13 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
     console.log(`SomeComponent render for habitUuid: ${habitUuid}`);
     console.log('Checked state on render:', checked);
   }, []);
+  const today = new Date().toLocaleDateString('en-CA', {
+    timeZone: 'America/Denver',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+  console.log('TODAY: ', today);
   const handleClick = async (event) => {
     event.stopPropagation();
     console.log(`Handling click for habitUuid: ${habitUuid}`);
