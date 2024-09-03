@@ -297,12 +297,12 @@ export async function logHabit(formData) {
   const completedTodayJson = JSON.stringify(completedToday);
 
   try {
-    await sql`
-    UPDATE users
-    SET
-      completed_today = ${completedTodayJson}::jsonb
-    WHERE uuid = ${habitData.user_uuid}
-  `;
+    //   await sql`
+    //   UPDATE users
+    //   SET
+    //     completed_today = ${completedTodayJson}::jsonb
+    //   WHERE uuid = ${habitData.user_uuid}
+    // `;
 
     await sql`
     UPDATE habits
@@ -382,12 +382,13 @@ export async function undoLogHabit(formData) {
   }
   const completedTodayJson = JSON.stringify(completedToday);
   try {
-    await sql`
-    UPDATE users
-    SET
-      completed_today = ${completedTodayJson}::jsonb
-    WHERE uuid = ${habitData.user_uuid}
-  `;
+    //   await sql`
+    //   UPDATE users
+    //   SET
+    //     completed_today = ${completedTodayJson}::jsonb
+    //   WHERE uuid = ${habitData.user_uuid}
+    // `;
+    console.log('ran');
     await sql`
       UPDATE habits
       SET

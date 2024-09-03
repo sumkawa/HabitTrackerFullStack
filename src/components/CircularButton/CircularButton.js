@@ -10,13 +10,12 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
   const { createToast } = React.useContext(ToastContext);
   const [loading, setLoading] = React.useState(false);
   const { checked, setChecked } = React.useContext(HabitContext);
-  console.log('checked circular button: ', checked);
+
   const handleClick = async (event) => {
     event.stopPropagation();
 
-    if (loading) {
-      return;
-    } else if (checked[habitUuid]) {
+    if (loading) return; // Prevent multiple submissions
+    if (checked[habitUuid]) {
       createToast('Already logged habit!', 'notice', true, () => undoLog());
       return;
     }
@@ -30,6 +29,7 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
       formData.append('timezone', timezone);
 
       await logHabit(formData);
+
       setChecked((prevChecked) => ({
         ...prevChecked,
         [habitUuid]: true,
@@ -39,6 +39,7 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
     } catch (error) {
       console.error('Error logging habit:', error);
       createToast('Failed to log habit', 'error');
+      throw error; // Rethrow if this needs to be caught higher up in the tree
     } finally {
       setLoading(false);
     }
@@ -58,11 +59,12 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
         ...prevChecked,
         [habitUuid]: false,
       }));
-      console.log('CHANGED CHECKED VAL FROM UNDO LOG');
+
       createToast('Habit log undone.', 'notice');
     } catch (error) {
       console.error('Error undoing habit log:', error);
       createToast('Failed to undo habit log', 'error');
+      throw error; // Rethrow if necessary
     } finally {
       setLoading(false);
     }
