@@ -7,7 +7,9 @@ import './styles.css';
 export const HabitContext = React.createContext();
 
 function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
-  const [checked, setChecked] = useState(() => {
+  const [checked, setChecked] = useState({});
+
+  useEffect(() => {
     const getTodayInUserTimezone = (timezone) => {
       const date = new Date().toLocaleString('en-US', { timeZone: timezone });
       const localDate = new Date(date);
@@ -29,20 +31,14 @@ function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
     });
 
     console.log('Initializing checked state:', initialCheckBoxes);
-    return initialCheckBoxes;
-  });
+    setChecked(initialCheckBoxes);
+  }, [habits, user.timezone]); // Only run when habits or user timezone changes
 
   // Logging for renders
   useEffect(() => {
     console.log('HabitsProvider re-rendered');
     console.log('Current checked state:', checked);
   });
-
-  // Optional: You might want to log when habits or user data changes
-  useEffect(() => {
-    console.log('Habits data changed:', habits);
-    console.log('User data:', user);
-  }, [habits, user]);
 
   // Function to update the checked state and log the change
   const updateChecked = useCallback(
