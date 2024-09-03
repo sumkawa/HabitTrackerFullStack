@@ -231,7 +231,7 @@ const LogHabitSchema = z.object({
 
 export async function logHabit(formData) {
   // throw new Error('Failed to log habit');
-
+  console.log('logging habit');
   const habitData = LogHabitSchema.parse({
     habit_uuid: formData.get('habit_uuid'),
     user_uuid: formData.get('user_uuid'),
@@ -325,6 +325,7 @@ const UndoLogHabitSchema = z.object({
 });
 
 export async function undoLogHabit(formData) {
+  console.log('undoing log habit');
   const habitData = UndoLogHabitSchema.parse({
     habit_uuid: formData.get('habit_uuid'),
     user_uuid: formData.get('user_uuid'),
