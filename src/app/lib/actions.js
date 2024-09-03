@@ -245,7 +245,7 @@ export async function logHabit(formData) {
     month: '2-digit',
     day: '2-digit',
   });
-
+  console.log('DATE FOR LOG HABIT: ', today);
   const { rows } = await sql`
     SELECT streak, last_day_logged, dates_repeated, longest_streak
     FROM habits
