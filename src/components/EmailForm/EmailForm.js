@@ -11,6 +11,7 @@ function EmailForm({ email, setEmail, handleSubmit }) {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
+        id='email-input'
       />
       <button type='submit' className='submit-button'>
         Add Friend

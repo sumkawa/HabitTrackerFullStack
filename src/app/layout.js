@@ -17,6 +17,7 @@ export default function RootLayout({ children }) {
   const theme = savedTheme?.value || 'dark';
 
   const themeColors = theme === 'light' ? LIGHT_COLORS : DARK_COLORS;
+
   return (
     <html lang='en' data-color-theme={theme} style={themeColors}>
       <Head>
@@ -27,16 +28,18 @@ export default function RootLayout({ children }) {
           rel='stylesheet'
         />
       </Head>
-      <ToastProvider>
-        <body>
-          <UserProvider>
-            <div className='header'>
-              <MainNavBar />
-            </div>
-            {children}
-          </UserProvider>
-        </body>
-      </ToastProvider>
+      <body>
+        <React.StrictMode>
+          <ToastProvider>
+            <UserProvider>
+              <div className='header'>
+                <MainNavBar />
+              </div>
+              {children}
+            </UserProvider>
+          </ToastProvider>
+        </React.StrictMode>
+      </body>
     </html>
   );
 }

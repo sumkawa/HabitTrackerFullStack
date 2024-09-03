@@ -51,7 +51,7 @@ const CircularProgressBar = ({ percentageVal, label }) => {
           {percentage}%
         </text>
       </svg>
-      <label className={styles.label}>{label}</label>
+      <div className={styles.label}>{label}</div>
     </div>
   );
 };

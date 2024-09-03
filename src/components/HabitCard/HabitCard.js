@@ -103,7 +103,9 @@ function HabitCard({ habitObject, user }) {
                         checked={weekdays[day]}
                         onChange={() => handleWeekdayChange(day)}
                       />
-                      <label htmlFor={`weekday-${day}`}></label>
+                      <label
+                        htmlFor={`weekday-${day}-${habitObject.uuid}`}
+                      ></label>
                     </React.Fragment>
                   ))}
                 </div>

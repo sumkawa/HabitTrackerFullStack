@@ -16,7 +16,7 @@ function TextInput({ value, onChange, name, id, placeholder }) {
         onChange={onChange}
         autoComplete='off'
       />
-      <label htmlFor='name' className='form__label__edit'>
+      <label htmlFor={id} className='form__label__edit'>
         {placeholder}
       </label>
     </div>

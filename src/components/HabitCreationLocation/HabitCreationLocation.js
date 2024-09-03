@@ -71,7 +71,7 @@ function HabitCreationLocation({
             }}
             autoComplete='off'
           />
-          <label htmlFor='name' className='form__label__paragraph'>
+          <label htmlFor='location' className='form__label__paragraph'>
             Location
           </label>
         </div>

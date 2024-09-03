@@ -31,7 +31,7 @@ function AcceptFriendsForm() {
     }
 
     loadFriendDetails();
-  }, [user.incoming_friend_requests]);
+  }, [user.incoming_friend_requests, createToast]);
 
   const handleAccept = async (friendUuid) => {
     try {

@@ -133,7 +133,7 @@ function AllHabitCreationSummary({
             }}
             autoComplete='off'
           />
-          <label htmlFor='name' className='form__label__paragraph'>
+          <label htmlFor='identity' className='form__label__paragraph'>
             Identity
           </label>
         </div>
