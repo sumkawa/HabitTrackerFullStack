@@ -10,10 +10,13 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
   const { createToast } = React.useContext(ToastContext);
   const [loading, setLoading] = React.useState(false);
   const { checked, setChecked } = React.useContext(HabitContext);
-
+  useEffect(() => {
+    console.log(`SomeComponent render for habitUuid: ${habitUuid}`);
+    console.log('Checked state on render:', checked);
+  }, []);
   const handleClick = async (event) => {
     event.stopPropagation();
-
+    console.log(`Handling click for habitUuid: ${habitUuid}`);
     if (loading) return; // Prevent multiple submissions
     if (checked[habitUuid]) {
       createToast('Already logged habit!', 'notice', true, () => undoLog());
@@ -30,10 +33,14 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
 
       await logHabit(formData);
 
-      setChecked((prevChecked) => ({
-        ...prevChecked,
-        [habitUuid]: true,
-      }));
+      setChecked((prevChecked) => {
+        const newState = {
+          ...prevChecked,
+          [habitUuid]: !prevChecked[habitUuid],
+        };
+        console.log('Setting new checked state:', newState);
+        return newState;
+      });
 
       createToast('Habit logged for today! Nice work.', 'success');
     } catch (error) {
@@ -55,10 +62,14 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
 
       await undoLogHabit(formData);
 
-      setChecked((prevChecked) => ({
-        ...prevChecked,
-        [habitUuid]: false,
-      }));
+      setChecked((prevChecked) => {
+        const newState = {
+          ...prevChecked,
+          [habitUuid]: !prevChecked[habitUuid],
+        };
+        console.log('Setting new checked state:', newState);
+        return newState;
+      });
 
       createToast('Habit log undone.', 'notice');
     } catch (error) {
