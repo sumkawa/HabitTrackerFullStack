@@ -67,16 +67,6 @@ function Dashboard({ isAll }) {
                       user={user}
                     />
                   ))}
-              <div className='hr-with-text'>
-                <span>Other</span>
-              </div>
-              {otherHabits.map((habit, index) => (
-                <HabitCard
-                  key={`${habit.uuid}-${index}`}
-                  habitObject={habit}
-                  user={user}
-                />
-              ))}
             </ScrollArea.Viewport>
             <ScrollArea.Scrollbar
               className='ScrollAreaScrollbar'

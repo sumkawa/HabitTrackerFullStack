@@ -52,7 +52,7 @@ function HabitCard({ habitObject, user }) {
     return rate.habit_uuid === habitObject.uuid;
   })?.completionRate;
 
-  console.log('checked: ', checked);
+  console.log('checked HabitCard: ', checked);
   return (
     <Dialog.Root
       open={modalOpen}
