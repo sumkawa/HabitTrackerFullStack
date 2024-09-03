@@ -10,7 +10,7 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
   const { createToast } = React.useContext(ToastContext);
   const [loading, setLoading] = React.useState(false);
   const { checked, setChecked } = React.useContext(HabitContext);
-  useEffect(() => {
+  React.useEffect(() => {
     console.log(`SomeComponent render for habitUuid: ${habitUuid}`);
     console.log('Checked state on render:', checked);
   }, []);
