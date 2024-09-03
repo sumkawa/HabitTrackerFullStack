@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import HabitPopover from '../HabitPopover';
 import Dashboard from '../Dashboard';
 import './styles.css';
@@ -8,8 +8,13 @@ export const HabitContext = React.createContext();
 
 function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
   const [checked, setChecked] = useState({});
+  const isInitialized = useRef(false); // Ref to track if state has been initialized
 
   useEffect(() => {
+    if (isInitialized.current) {
+      return; // Skip re-initialization
+    }
+
     const getTodayInUserTimezone = (timezone) => {
       const date = new Date().toLocaleString('en-US', { timeZone: timezone });
       const localDate = new Date(date);
@@ -32,7 +37,8 @@ function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
 
     console.log('Initializing checked state:', initialCheckBoxes);
     setChecked(initialCheckBoxes);
-  }, [habits, user.timezone]); // Only run when habits or user timezone changes
+    isInitialized.current = true; // Mark as initialized
+  }, [habits, user.timezone]);
 
   // Logging for renders
   useEffect(() => {
