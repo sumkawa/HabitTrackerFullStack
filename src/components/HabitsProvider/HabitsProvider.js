@@ -9,7 +9,7 @@ export const HabitContext = React.createContext();
 function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
   const [checked, setChecked] = useState({});
   const isInitialized = useRef(false); // Ref to track if state has been initialized
-
+  console.log('habits: ', habits);
   useEffect(() => {
     if (isInitialized.current) {
       return; // Skip re-initialization
