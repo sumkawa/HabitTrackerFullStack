@@ -317,7 +317,7 @@ export async function logHabit(formData) {
     return { message: 'Database Error: Failed to log habit.' };
   }
 
-  revalidatePath('/dashboard/habits');
+  revalidatePath('/dashboard/habits/profile');
 }
 
 const UndoLogHabitSchema = z.object({
@@ -398,10 +398,9 @@ export async function undoLogHabit(formData) {
     `;
   } catch (error) {
     throw new Error('Failed to undo habit log');
-    console.error(error);
   }
 
-  revalidatePath('/dashboard/habits');
+  revalidatePath('/dashboard/habits/profile');
 }
 
 const UpdateHabitSchema = z.object({
