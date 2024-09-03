@@ -13,8 +13,7 @@ import 'react-calendar-heatmap/dist/styles.css';
 import './styles.css';
 
 function HabitCard({ habitObject, user }) {
-  const { checked, setChecked, completionRates } =
-    React.useContext(HabitContext);
+  const { completionRates } = React.useContext(HabitContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false); // New state for EditHabitButton
   const [loading, setLoading] = useState(false);
@@ -52,7 +51,6 @@ function HabitCard({ habitObject, user }) {
     return rate.habit_uuid === habitObject.uuid;
   })?.completionRate;
 
-  console.log('checked HabitCard: ', checked);
   return (
     <Dialog.Root
       open={modalOpen}
@@ -69,8 +67,6 @@ function HabitCard({ habitObject, user }) {
                     habitUuid={habitObject.uuid}
                     userUuid={[user.uuid]}
                     timezone={user.timezone}
-                    checked={checked}
-                    setChecked={setChecked}
                     disabled={loading}
                   />
                   <div className='card-title'>

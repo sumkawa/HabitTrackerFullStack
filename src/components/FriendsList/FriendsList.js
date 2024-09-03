@@ -10,7 +10,6 @@ import './styles.css';
 function FriendsList() {
   const { user } = React.useContext(AnalyticsContext);
   const [friendsDetails, setFriendsDetails] = useState([]);
-  console.log(user);
   useEffect(() => {
     async function loadFriendsDetails() {
       if (user.friends && user.friends.length > 0) {

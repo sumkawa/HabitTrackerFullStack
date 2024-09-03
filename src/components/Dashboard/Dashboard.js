@@ -8,9 +8,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area';
 import styles from './dashboard.module.css';
 import './styles.css';
 function Dashboard({ isAll }) {
-  const [collapsibleOpen, setCollapsibleOpen] = React.useState(false);
-  const { habits, tags, user, checked, setChecked } =
-    React.useContext(HabitContext);
+  const { habits, user } = React.useContext(HabitContext);
 
   const getTodayInUserTimezone = (timezone) => {
     const date = new Date();

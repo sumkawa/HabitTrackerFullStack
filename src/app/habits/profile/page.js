@@ -84,7 +84,7 @@ export default async function Profile() {
 
   const cumulativeCompletionRate =
     totalExpected > 0 ? (totalCompleted / totalExpected) * 100 : 0;
-  console.log(dbUser);
+
   return (
     <main>
       <ProfileContent

@@ -28,7 +28,6 @@ function FriendsCard() {
       createToast('Error sending friend request', 'error');
     }
   };
-  console.log(user);
   return (
     <div className={styles.friendsContainer}>
       <h2 className={styles.sectionTitle}>Friends</h2>

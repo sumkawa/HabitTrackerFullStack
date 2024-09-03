@@ -30,7 +30,7 @@ function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
 
     return initialCheckBoxes;
   });
-
+  console.log('checked habitprovider: ', checked);
   return (
     <HabitContext.Provider
       value={{ habits, tags, user, checked, setChecked, completionRates }}
