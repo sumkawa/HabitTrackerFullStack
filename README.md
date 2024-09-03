@@ -1,7 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ![dashboard](https://github.com/user-attachments/assets/a55b0232-970f-4947-bec1-c8139f0237de)
-![Screenshot of Habit Tracking App Dashboard](./assets/dashboard.png)
+![Screenshot of Habit Tracking App Dashboard](./assets/dashboard.png](https://github.com/user-attachments/assets/a55b0232-970f-4947-bec1-c8139f0237de))
 
 ## About
 
