@@ -310,7 +310,7 @@ export async function logHabit(formData) {
     UPDATE habits
     SET
       streak = ${newStreak},
-      last_day_logged = ${today},
+      last_day_logged = ${formData.get('today')},
       dates_repeated = ${updatedDatesRepeatedJson}::jsonb,
       longest_streak = ${updatedLongestStreak}
     WHERE uuid = ${habitData.habit_uuid} AND user_uuid = ${habitData.user_uuid}
