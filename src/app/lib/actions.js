@@ -325,6 +325,7 @@ export async function logHabit(formData) {
 const UndoLogHabitSchema = z.object({
   habit_uuid: z.string().uuid(),
   user_uuid: z.string().uuid(),
+  today: z.string(),
 });
 
 export async function undoLogHabit(formData) {
@@ -332,13 +333,9 @@ export async function undoLogHabit(formData) {
   const habitData = UndoLogHabitSchema.parse({
     habit_uuid: formData.get('habit_uuid'),
     user_uuid: formData.get('user_uuid'),
+    today: formData.get('today'),
   });
-  const today = new Date().toLocaleDateString('en-CA', {
-    timeZone: habitData.timezone,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  });
+  const today = habitData.today;
   const { rows } = await sql`
     SELECT streak, dates_repeated
     FROM habits
