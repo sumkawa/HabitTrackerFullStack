@@ -23,12 +23,17 @@ export async function fetchHabits(userId) {
       WHERE user_uuid = ${userId}
       ORDER BY date_started DESC
     `;
-
-    const currentDate = new Date();
     const habits = [];
 
     for (let habit of data.rows) {
-      const lastDayLogged = new Date(habit.last_day_logged);
+      const normalizeToStartOfDay = (date) => {
+        const newDate = new Date(date);
+        newDate.setHours(0, 0, 0, 0);
+        return newDate;
+      };
+
+      const lastDayLogged = normalizeToStartOfDay(habit.last_day_logged);
+      const currentDate = normalizeToStartOfDay(new Date());
       const timeDifference = currentDate - lastDayLogged;
       const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
       if (daysDifference > 2) {

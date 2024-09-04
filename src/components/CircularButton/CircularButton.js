@@ -22,7 +22,6 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
     console.log('Checked state on render:', checked);
   }, []);
 
-  console.log('TODAY: ', today);
   const handleClick = async (event) => {
     event.stopPropagation();
     console.log(`Handling click for habitUuid: ${habitUuid}`);
