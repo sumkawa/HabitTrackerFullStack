@@ -28,17 +28,18 @@ export async function createHabit(formData) {
     days_of_week: formData.getAll('days_of_week'),
     dates_repeated: formData.get('dates_repeated'),
   });
-
+  const utcDate = new Date().toISOString();
+  console.log('UTC DATE!?!?!?!', utcDate);
   try {
     await sql`
-    INSERT INTO habits (
-      uuid, user_uuid, name, streak, date_started, last_day_logged, behavior, time, location, tag_name, identity, days_of_week, dates_repeated, longest_streak
-    ) VALUES (
-      gen_random_uuid(), ${habitData.user_uuid}, ${habitData.name}, 0, CURRENT_DATE, NULL,
-      ${habitData.behavior}, ${habitData.time}, ${habitData.location}, ${habitData.tag_name}, ${habitData.identity}, ${habitData.days_of_week},
-      ${habitData.dates_repeated}, 0
-    )
-  `;
+      INSERT INTO habits (
+        uuid, user_uuid, name, streak, date_started, last_day_logged, behavior, time, location, tag_name, identity, days_of_week, dates_repeated, longest_streak
+      ) VALUES (
+        gen_random_uuid(), ${habitData.user_uuid}, ${habitData.name}, 0, ${utcDate}, NULL,
+        ${habitData.behavior}, ${habitData.time}, ${habitData.location}, ${habitData.tag_name}, ${habitData.identity}, ${habitData.days_of_week},
+        ${habitData.dates_repeated}, 0
+      )
+    `;
   } catch (error) {
     return {
       message: 'Database Error: Failed to Create Invoice.',
@@ -239,13 +240,9 @@ export async function logHabit(formData) {
     timezone: formData.get('timezone'),
     today: formData.get('today'),
   });
-  const today = habitData.today;
-  const todayTest = new Date().toLocaleDateString('en-CA', {
-    timeZone: habitData.timezone,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  });
+  const today = habitData.today || new Date().toISOString().split('T')[0];
+  const todayTest = new Date().toISOString();
+
   console.log('DATE FOR LOG HABIT: ', today);
   console.log('Today test: ', todayTest);
   const { rows } = await sql`
@@ -307,14 +304,14 @@ export async function logHabit(formData) {
     `;
 
     await sql`
-    UPDATE habits
-    SET
-      streak = ${newStreak},
-      last_day_logged = ${formData.get('today')},
-      dates_repeated = ${updatedDatesRepeatedJson}::jsonb,
-      longest_streak = ${updatedLongestStreak}
-    WHERE uuid = ${habitData.habit_uuid} AND user_uuid = ${habitData.user_uuid}
-  `;
+      UPDATE habits
+      SET
+        streak = ${newStreak},
+        last_day_logged = ${todayTest},
+        dates_repeated = ${updatedDatesRepeatedJson}::jsonb,
+        longest_streak = ${updatedLongestStreak}
+      WHERE uuid = ${habitData.habit_uuid} AND user_uuid = ${habitData.user_uuid}
+    `;
   } catch (error) {
     return { message: 'Database Error: Failed to log habit.' };
   }
@@ -335,7 +332,7 @@ export async function undoLogHabit(formData) {
     user_uuid: formData.get('user_uuid'),
     today: formData.get('today'),
   });
-  const today = habitData.today;
+  const today = habitData.today || new Date().toISOString().split('T')[0];
   const { rows } = await sql`
     SELECT streak, dates_repeated
     FROM habits

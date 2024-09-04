@@ -25,19 +25,9 @@ export async function fetchHabits(userId) {
     `;
     const habits = [];
 
-    const normalizeToUTC = (date) => {
-      const utcDate = new Date(date);
-      return new Date(
-        utcDate.getUTCFullYear(),
-        utcDate.getUTCMonth(),
-        utcDate.getUTCDate()
-      );
-    };
-
-    const currentDate = normalizeToUTC(new Date());
-
     for (let habit of data.rows) {
-      const lastDayLogged = normalizeToUTC(habit.last_day_logged);
+      const lastDayLogged = new Date(habit.last_day_logged);
+      const currentDate = new Date();
 
       const timeDifference = currentDate - lastDayLogged;
       const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
@@ -60,27 +50,6 @@ export async function fetchHabits(userId) {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch habits.');
-  }
-}
-
-export async function createHabit(habit) {
-  try {
-    await sql`
-      INSERT INTO habits (
-        uuid, user_uuid, name, streak, date_started, last_day_logged, behavior, time, location, tag_name, identity, days_of_week, dates_repeated, longest_streak
-      ) VALUES (
-        ${habit.uuid}, ${habit.user_uuid}, ${habit.name}, ${habit.streak}, ${
-      habit.date_started
-    }, ${habit.last_day_logged},
-        ${habit.behavior}, ${habit.time}, ${habit.location}, ${
-      habit.tag_name
-    }, ${habit.identity}, ${habit.days_of_week},
-        ${sql.json(habit.dates_repeated)}, ${habit.longest_streak ?? 0}
-      )
-    `;
-  } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to create habit.');
   }
 }
 
