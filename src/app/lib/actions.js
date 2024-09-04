@@ -240,11 +240,8 @@ export async function logHabit(formData) {
     timezone: formData.get('timezone'),
     today: formData.get('today'),
   });
-  const today = habitData.today || new Date().toISOString().split('T')[0];
-  const todayTest = new Date().toISOString();
+  const today = new Date().toISOString();
 
-  console.log('DATE FOR LOG HABIT: ', today);
-  console.log('Today test: ', todayTest);
   const { rows } = await sql`
     SELECT streak, last_day_logged, dates_repeated, longest_streak
     FROM habits
@@ -307,7 +304,7 @@ export async function logHabit(formData) {
       UPDATE habits
       SET
         streak = ${newStreak},
-        last_day_logged = ${todayTest},
+        last_day_logged = ${today},
         dates_repeated = ${updatedDatesRepeatedJson}::jsonb,
         longest_streak = ${updatedLongestStreak}
       WHERE uuid = ${habitData.habit_uuid} AND user_uuid = ${habitData.user_uuid}
