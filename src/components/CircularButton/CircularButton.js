@@ -10,16 +10,18 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
   const { createToast } = React.useContext(ToastContext);
   const [loading, setLoading] = React.useState(false);
   const { checked, setChecked } = React.useContext(HabitContext);
-  React.useEffect(() => {
-    console.log(`SomeComponent render for habitUuid: ${habitUuid}`);
-    console.log('Checked state on render:', checked);
-  }, []);
   const today = new Date().toLocaleDateString('en-CA', {
-    timeZone: 'America/Denver',
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
   });
+  console.log('today', today);
+
+  React.useEffect(() => {
+    console.log(`SomeComponent render for habitUuid: ${habitUuid}`);
+    console.log('Checked state on render:', checked);
+  }, []);
+
   console.log('TODAY: ', today);
   const handleClick = async (event) => {
     event.stopPropagation();
@@ -37,7 +39,9 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
       formData.append('habit_uuid', habitUuid);
       formData.append('user_uuid', userUuid);
       formData.append('timezone', timezone);
-
+      formData.append('today', today);
+      console.log('form data today: ', today);
+      console.log('form data today type: ', typeof today);
       await logHabit(formData);
 
       setChecked((prevChecked) => {
@@ -66,7 +70,7 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
       const formData = new FormData();
       formData.append('habit_uuid', habitUuid);
       formData.append('user_uuid', userUuid);
-
+      formData.append('today', today);
       await undoLogHabit(formData);
 
       setChecked((prevChecked) => {

@@ -227,6 +227,7 @@ const LogHabitSchema = z.object({
   habit_uuid: z.string().uuid(),
   user_uuid: z.string().uuid(),
   timezone: z.string(),
+  today: z.string(),
 });
 
 export async function logHabit(formData) {
@@ -236,15 +237,17 @@ export async function logHabit(formData) {
     habit_uuid: formData.get('habit_uuid'),
     user_uuid: formData.get('user_uuid'),
     timezone: formData.get('timezone'),
+    today: formData.get('today'),
   });
-
-  const today = new Date().toLocaleDateString('en-CA', {
+  const today = habitData.today;
+  const todayTest = new Date().toLocaleDateString('en-CA', {
     timeZone: habitData.timezone,
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
   });
   console.log('DATE FOR LOG HABIT: ', today);
+  console.log('Today test: ', todayTest);
   const { rows } = await sql`
     SELECT streak, last_day_logged, dates_repeated, longest_streak
     FROM habits
