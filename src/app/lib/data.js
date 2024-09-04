@@ -25,17 +25,23 @@ export async function fetchHabits(userId) {
     `;
     const habits = [];
 
-    for (let habit of data.rows) {
-      const normalizeToStartOfDay = (date) => {
-        const newDate = new Date(date);
-        newDate.setHours(0, 0, 0, 0);
-        return newDate;
-      };
+    const normalizeToUTC = (date) => {
+      const utcDate = new Date(date);
+      return new Date(
+        utcDate.getUTCFullYear(),
+        utcDate.getUTCMonth(),
+        utcDate.getUTCDate()
+      );
+    };
 
-      const lastDayLogged = normalizeToStartOfDay(habit.last_day_logged);
-      const currentDate = normalizeToStartOfDay(new Date());
+    const currentDate = normalizeToUTC(new Date());
+
+    for (let habit of data.rows) {
+      const lastDayLogged = normalizeToUTC(habit.last_day_logged);
+
       const timeDifference = currentDate - lastDayLogged;
       const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+
       if (daysDifference > 2) {
         habit.streak = 0;
         await sql`
