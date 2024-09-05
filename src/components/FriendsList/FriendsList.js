@@ -20,6 +20,7 @@ function FriendsList() {
 
     loadFriendsDetails();
   }, [user.friends]);
+  const todayDateOnly = new Date().toISOString().split('T')[0];
 
   return (
     <ScrollArea.Root className='ScrollAreaRootFriends'>
@@ -30,10 +31,9 @@ function FriendsList() {
               <p className={styles.friendEmail}>{friend.email}</p>
               <p className={styles.friendCompleted}>
                 Completed Today:{' '}
-                {Object.values(friend.completed_today).reduce(
-                  (a, b) => a + b,
-                  0
-                )}
+                {friend.completed_today[todayDateOnly]
+                  ? friend.completed_today[todayDateOnly]
+                  : 0}
               </p>
             </li>
           ))}

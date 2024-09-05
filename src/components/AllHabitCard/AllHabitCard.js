@@ -6,11 +6,11 @@ import { ArrowLeftIcon, RocketIcon } from '@radix-ui/react-icons';
 import { Frown } from 'react-feather';
 import { motion } from 'framer-motion';
 import HabitCalendar from '../HabitCalendar';
-import CircularButton from '../CircularButton';
 import { AllHabitContext } from '../AllHabitsProvider';
 import AllHabitsEditHabitButton from '../AllHabitsEditHabitButton';
 import 'react-calendar-heatmap/dist/styles.css';
 import './styles.css';
+import AllHabitsCircularButton from '../AllHabitsCircularButton';
 
 function AllHabitCard({ habitObject, user }) {
   const { checked, setChecked, completionRates } =
@@ -62,7 +62,7 @@ function AllHabitCard({ habitObject, user }) {
             <div className='container-card bg-white-box'>
               <div className='habit-card-header'>
                 <div className='card-title-container'>
-                  <CircularButton
+                  <AllHabitsCircularButton
                     id={habitObject.uuid}
                     habitUuid={habitObject.uuid}
                     userUuid={[user.uuid]}

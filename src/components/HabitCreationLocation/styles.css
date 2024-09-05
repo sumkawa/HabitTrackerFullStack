@@ -127,7 +127,7 @@
   );
   letter-spacing: -1px;
   text-shadow: rgba(0, 166, 255, 0.8) 0px 0px 4px;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: var(--text-fill-color);
   -webkit-background-clip: text;
   background-clip: text;
   /* line-height: 72px; */
@@ -144,7 +144,7 @@
   );
   letter-spacing: -1px;
   text-shadow: rgba(255, 0, 0, 0.8) 0px 0px 4px;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: var(--text-fill-color);
   -webkit-background-clip: text;
   background-clip: text;
   /* line-height: 72px; */
@@ -161,7 +161,7 @@
   );
   letter-spacing: -1px;
   text-shadow: rgba(21, 255, 0, 0.8) 0px 0px 4px;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: var(--text-fill-color);
   -webkit-background-clip: text;
   background-clip: text;
   /* line-height: 72px; */
@@ -170,4 +170,9 @@
 }
 .confirmation-text {
   font-size: 3rem;
+}
+@media screen and (max-width: 980px) {
+  .secondary-text {
+    font-size: 1.2rem;
+  }
 }

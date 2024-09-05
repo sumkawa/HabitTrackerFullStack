@@ -47,7 +47,6 @@ export default async function Profile() {
     let expectedDays = 0;
 
     for (let d = startDate; d <= endDate; d.setDate(d.getDate() + 1)) {
-      console.log('ran calculate expected days');
       const dayOfWeek = formatDateToTimeZone(d, dbUser.timezone, {
         weekday: 'long',
       });
@@ -61,14 +60,11 @@ export default async function Profile() {
 
   function calculateCompletedDays(habit) {
     // Ensure dates_repeated exists and is an array
-    console.log('repeated', habit.dates_repeated);
     if (!habit.dates_repeated || habit.dates_repeated.length === 0) {
       return 0;
     }
 
     return habit.dates_repeated.filter((date) => {
-      console.log('ran calculate completed days');
-      console.log(date);
       const completedDate = formatDateToTimeZone(date.date, dbUser.timezone);
       const dayOfWeek = formatDateToTimeZone(completedDate, dbUser.timezone, {
         weekday: 'long',

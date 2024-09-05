@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './styles.css';
 
 function EmailForm({ email, setEmail, handleSubmit }) {
@@ -15,6 +15,9 @@ function EmailForm({ email, setEmail, handleSubmit }) {
       />
       <button type='submit' className='submit-button'>
         Add Friend
+      </button>
+      <button type='submit' className='submit-button-plus'>
+        PLUS
       </button>
     </form>
   );

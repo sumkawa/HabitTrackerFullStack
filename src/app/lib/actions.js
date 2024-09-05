@@ -29,7 +29,6 @@ export async function createHabit(formData) {
     dates_repeated: formData.get('dates_repeated'),
   });
   const utcDate = new Date().toISOString();
-  console.log('UTC DATE!?!?!?!', utcDate);
   try {
     await sql`
       INSERT INTO habits (
@@ -70,7 +69,7 @@ export async function sendFriendRequest(formData) {
   }
 
   const friend = friendResult.rows[0];
-  console.log('Friend: ', friend);
+
   if (
     friend.incoming_friend_requests.includes(friendData.user_uuid) ||
     friend.friends.includes(friendData.user_uuid)
@@ -114,12 +113,6 @@ const ManageFriendRequestSchema = z.object({
 });
 
 export async function acceptFriendRequest(formData) {
-  console.log(
-    'Form Data:',
-    formData.get('user_uuid'),
-    formData.get('friend_uuid')
-  );
-
   const friendData = ManageFriendRequestSchema.parse({
     user_uuid: formData.get('user_uuid'),
     friend_uuid: formData.get('friend_uuid'),
@@ -232,7 +225,6 @@ const LogHabitSchema = z.object({
 });
 
 export async function logHabit(formData) {
-  console.log('logging habit');
   // throw new Error('Failed to log habit');
   const habitData = LogHabitSchema.parse({
     habit_uuid: formData.get('habit_uuid'),
@@ -241,7 +233,7 @@ export async function logHabit(formData) {
     today: formData.get('today'),
   });
   const today = new Date().toISOString();
-
+  const todayDateOnly = new Date().toISOString().split('T')[0];
   const { rows } = await sql`
     SELECT streak, last_day_logged, dates_repeated, longest_streak
     FROM habits
@@ -254,7 +246,6 @@ export async function logHabit(formData) {
   }
 
   const habit = rows[0];
-  console.log('habit: ', habit);
   const newStreak =
     habit.last_day_logged === today ? habit.streak : habit.streak + 1;
   const updatedDatesRepeated = [
@@ -278,16 +269,15 @@ export async function logHabit(formData) {
     `;
   const user = userResult.rows[0];
   let completedToday = user.completed_today;
-
   if (!completedToday) {
-    completedToday = { [today]: 1 };
+    completedToday = { [todayDateOnly]: 1 };
   } else {
     completedToday = completedToday;
 
-    if (completedToday[today]) {
-      completedToday[today] += 1;
+    if (completedToday[todayDateOnly]) {
+      completedToday[todayDateOnly] += 1;
     } else {
-      completedToday[today] = 1;
+      completedToday[todayDateOnly] = 1;
     }
   }
   const completedTodayJson = JSON.stringify(completedToday);
@@ -323,7 +313,6 @@ const UndoLogHabitSchema = z.object({
 });
 
 export async function undoLogHabit(formData) {
-  console.log('undoing log habit');
   const habitData = UndoLogHabitSchema.parse({
     habit_uuid: formData.get('habit_uuid'),
     user_uuid: formData.get('user_uuid'),
@@ -439,7 +428,6 @@ export async function updateHabit(formData) {
   } catch (error) {
     throw new Error(error);
   }
-  console.log('revalidating...');
   revalidatePath('/habits/profile');
 }
 

@@ -9,7 +9,6 @@ export const HabitContext = React.createContext();
 function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
   const [checked, setChecked] = useState({});
   const isInitialized = useRef(false); // Ref to track if state has been initialized
-  console.log('habits: ', habits);
   useEffect(() => {
     if (isInitialized.current) {
       return; // Skip re-initialization
@@ -35,21 +34,13 @@ function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
       initialCheckBoxes[habit.uuid] = habitLastDayLogged === today;
     });
 
-    console.log('Initializing checked state:', initialCheckBoxes);
     setChecked(initialCheckBoxes);
     isInitialized.current = true; // Mark as initialized
   }, [habits, user.timezone]);
 
-  // Logging for renders
-  useEffect(() => {
-    console.log('HabitsProvider re-rendered');
-    console.log('Current checked state:', checked);
-  });
-
   // Function to update the checked state and log the change
   const updateChecked = useCallback(
     (newState) => {
-      console.log('Updating checked state:', newState);
       setChecked(newState);
     },
     [setChecked]

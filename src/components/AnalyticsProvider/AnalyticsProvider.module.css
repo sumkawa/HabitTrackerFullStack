@@ -20,11 +20,22 @@
 
 .friendsCardsContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.5fr 2.5fr;
   grid-row: 2 / 3;
   gap: 10px;
   width: 100%;
 }
+
+@media screen and (max-width: 1550px) and (min-width: 1351px) {
+  .friendsCardsContainer {
+    display: grid;
+    grid-template-columns: 1.5fr 2.5fr;
+    grid-row: 2 / 3;
+    gap: 10px;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .friendsCardsContainer {
     display: flex;

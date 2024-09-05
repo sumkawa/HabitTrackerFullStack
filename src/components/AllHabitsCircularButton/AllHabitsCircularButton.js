@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
 import { ToastContext } from '../ToastProvider';
-import { HabitContext } from '../HabitsProvider';
+import { AllHabitContext } from '../AllHabitsProvider';
 import { CheckIcon } from '@radix-ui/react-icons';
 import { logHabit, undoLogHabit } from '@/app/lib/actions';
-import styles from './CircularButton.module.css';
+import styles from './AllHabitsCircularButton.module.css';
 
-function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
+function AllHabitsCircularButton({ habitUuid, userUuid, timezone, disabled }) {
   const { createToast } = React.useContext(ToastContext);
   const [loading, setLoading] = React.useState(false);
-  const { checked, setChecked } = React.useContext(HabitContext);
+  const { checked, setChecked } = React.useContext(AllHabitContext);
   const today = new Date().toLocaleDateString('en-CA', {
     year: 'numeric',
     month: '2-digit',
@@ -95,4 +95,4 @@ function CircularButton({ habitUuid, userUuid, timezone, disabled }) {
   );
 }
 
-export default CircularButton;
+export default AllHabitsCircularButton;

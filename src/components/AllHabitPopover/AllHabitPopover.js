@@ -31,7 +31,6 @@ function AllHabitPopover() {
   const [isAM, setIsAm] = React.useState('AM');
   const [identity, setIdentity] = React.useState('');
   const wrapperRef = React.useRef(null);
-
   React.useEffect(() => {
     if (dialogOpen) {
       const scrollbarWidth =
@@ -74,6 +73,18 @@ function AllHabitPopover() {
       ...prev,
       [day]: !prev[day],
     }));
+  };
+
+  const handleAllChange = () => {
+    setWeekdays({
+      sunday: true,
+      monday: true,
+      tuesday: true,
+      wednesday: true,
+      thursday: true,
+      friday: true,
+      saturday: true,
+    });
   };
 
   React.useEffect(() => {
@@ -140,6 +151,7 @@ function AllHabitPopover() {
                       setTime={setTime}
                       weekdays={weekdays}
                       handleWeekdayChange={handleWeekdayChange}
+                      handleAllChange={handleAllChange}
                       scrollLast={scrollLast}
                       scrollNext={scrollNext}
                       setIsAm={setIsAm}

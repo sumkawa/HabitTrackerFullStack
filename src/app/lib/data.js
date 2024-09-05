@@ -2,7 +2,6 @@ import { sql } from '@vercel/postgres';
 import { v4 as uuidv4 } from 'uuid';
 
 export async function fetchHabits(userId) {
-  console.log('RAN FETCH HABITS');
   try {
     const data = await sql`
       SELECT
@@ -31,8 +30,7 @@ export async function fetchHabits(userId) {
 
       const timeDifference = currentDate - lastDayLogged;
       const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
-
-      if (daysDifference > 2) {
+      if (daysDifference > 1) {
         habit.streak = 0;
         await sql`
           UPDATE habits
@@ -85,7 +83,6 @@ export async function createUser(user) {
     `;
 
     if (rows.length > 0) {
-      console.log('User with this email already exists.');
       return { success: false, message: 'User already exists' };
     }
 

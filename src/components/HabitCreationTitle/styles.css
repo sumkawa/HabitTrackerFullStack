@@ -139,7 +139,7 @@
   );
   letter-spacing: -1px;
   text-shadow: rgba(0, 166, 255, 0.8) 0px 0px 4px;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: var(--text-fill-color);
   -webkit-background-clip: text;
   background-clip: text;
   /* line-height: 72px; */
@@ -156,7 +156,7 @@
   );
   letter-spacing: -1px;
   text-shadow: rgba(255, 0, 0, 0.8) 0px 0px 4px;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: var(--text-fill-color);
   -webkit-background-clip: text;
   background-clip: text;
   /* line-height: 72px; */
@@ -173,7 +173,7 @@
   );
   letter-spacing: -1px;
   text-shadow: rgba(21, 255, 0, 0.8) 0px 0px 4px;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: var(--text-fill-color);
   -webkit-background-clip: text;
   background-clip: text;
   /* line-height: 72px; */
@@ -182,4 +182,37 @@
 }
 .confirmation-text {
   font-size: 3rem;
+}
+
+@media screen and (max-width: 980px) {
+  .form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 3rem;
+    color: var(--color-text);
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:placeholder-shown ~ .form__label {
+      font-size: 0.8rem;
+      cursor: text;
+      top: 20px;
+    }
+  }
+  .form__group {
+    position: relative;
+    padding: 15px 0 0;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .secondary-text {
+    font-size: 1.2rem;
+  }
 }

@@ -7,6 +7,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area';
 
 import styles from './dashboard.module.css';
 import './styles.css';
+import HabitCardPlaceholder from '../HabitCardPlaceholder';
 function Dashboard({ isAll }) {
   const { habits, user } = React.useContext(HabitContext);
 
@@ -45,7 +46,9 @@ function Dashboard({ isAll }) {
         >
           <button>View All</button>
         </Link>
-        {habitsToday.length === 0 ? (
+        {habits.length == 0 ? (
+          <HabitCardPlaceholder />
+        ) : habitsToday.length == 0 ? (
           <p>No habits scheduled for today.</p>
         ) : (
           <ScrollArea.Root className='ScrollAreaRoot'>

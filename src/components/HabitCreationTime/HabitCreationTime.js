@@ -9,6 +9,7 @@ function HabitCreationTime({
   setTime,
   weekdays,
   handleWeekdayChange,
+  handleAllChange,
   scrollLast,
   scrollNext,
   setIsAm,
@@ -22,7 +23,6 @@ function HabitCreationTime({
     friday: false,
     saturday: false,
   };
-
   const weekdaysList = Object.keys(weekValues);
 
   function isAmOrPm(dateString) {
@@ -66,6 +66,7 @@ function HabitCreationTime({
           </div>
         )}
       </div>
+
       <div className='weekday-input-container'>
         <div className='weekDays-selector'>
           {weekdaysList.map((day) => (
@@ -83,6 +84,11 @@ function HabitCreationTime({
             </React.Fragment>
           ))}
         </div>
+      </div>
+      <div className='habitPopoverButtonAll'>
+        <button onClick={handleAllChange} className='everyDayButton'>
+          Every day
+        </button>
       </div>
       <div className='time-input-container'>
         <TimePicker

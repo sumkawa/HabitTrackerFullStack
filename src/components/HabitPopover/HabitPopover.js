@@ -76,6 +76,18 @@ function HabitPopover() {
     }));
   };
 
+  const handleAllChange = () => {
+    setWeekdays({
+      sunday: true,
+      monday: true,
+      tuesday: true,
+      wednesday: true,
+      thursday: true,
+      friday: true,
+      saturday: true,
+    });
+  };
+
   React.useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Enter') {
@@ -140,6 +152,7 @@ function HabitPopover() {
                       setTime={setTime}
                       weekdays={weekdays}
                       handleWeekdayChange={handleWeekdayChange}
+                      handleAllChange={handleAllChange}
                       scrollLast={scrollLast}
                       scrollNext={scrollNext}
                       setIsAm={setIsAm}

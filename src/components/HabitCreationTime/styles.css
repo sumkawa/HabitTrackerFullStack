@@ -128,7 +128,7 @@
   );
   letter-spacing: -1px;
   text-shadow: rgba(0, 166, 255, 0.8) 0px 0px 4px;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: var(--text-fill-color);
   -webkit-background-clip: text;
   background-clip: text;
   /* line-height: 72px; */
@@ -145,7 +145,7 @@
   );
   letter-spacing: -1px;
   text-shadow: rgba(255, 0, 0, 0.8) 0px 0px 4px;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: var(--text-fill-color);
   -webkit-background-clip: text;
   background-clip: text;
   /* line-height: 72px; */
@@ -162,7 +162,7 @@
   );
   letter-spacing: -1px;
   text-shadow: rgba(21, 255, 0, 0.8) 0px 0px 4px;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: var(--text-fill-color);
   -webkit-background-clip: text;
   background-clip: text;
   /* line-height: 72px; */
@@ -283,6 +283,7 @@
 
 /* Weekday selector */
 .weekday-input-container {
+  color: white;
   margin: 20px;
 }
 .weekDays-selector input {
@@ -304,4 +305,24 @@
 .weekDays-selector input[type='checkbox']:checked + label {
   background-color: #62c073;
   color: #ffffff;
+}
+.everyDayButton {
+  background-color: #3b9eff;
+  color: white;
+  border-radius: 25px;
+  padding: 10px;
+  font-size: 1.2rem;
+  width: 100px;
+  text-align: center;
+}
+.habitPopoverButtonAll {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 980px) {
+  .secondary-text {
+    font-size: 1.2rem;
+  }
 }
