@@ -4,7 +4,6 @@ import styles from './AcceptFriendsForm.module.css';
 import {
   acceptFriendRequest,
   rejectFriendRequest,
-  fetchFriendsDetails,
 } from '../../app/lib/actions';
 import { AnalyticsContext } from '../AnalyticsProvider';
 import { ToastContext } from '../ToastProvider';

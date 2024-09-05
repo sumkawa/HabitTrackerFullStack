@@ -11,14 +11,20 @@ import HabitCardPlaceholder from '../HabitCardPlaceholder';
 function Dashboard({ isAll }) {
   const { habits, user } = React.useContext(HabitContext);
 
+  const [today, setToday] = React.useState(null);
   const getTodayInUserTimezone = (timezone) => {
     const date = new Date();
     const localeDate = date.toLocaleString('en-US', { timeZone: timezone });
     const localDate = new Date(localeDate);
     return localDate;
   };
+  React.useEffect(() => {
+    const currentDay = getTodayInUserTimezone(user.timezone);
+    setToday(currentDay);
+  }, [user.timezone]);
 
-  const today = getTodayInUserTimezone(user.timezone);
+  if (!today) return null;
+
   const weekday = today.toLocaleString('en-US', { weekday: 'long' });
 
   const habitsToday = habits
@@ -39,12 +45,8 @@ function Dashboard({ isAll }) {
         <h2 className={styles.sectionTitle}>
           {isAll ? 'All Habits' : "Today's Habits"}
         </h2>
-        <Link
-          href='/habits/profile/all-habits'
-          className={styles.viewAllButton}
-          passHref
-        >
-          <button>View All</button>
+        <Link href="/habits/profile/all-habits" passHref className={styles.viewAllButton}>
+         View All
         </Link>
         {habits.length == 0 ? (
           <HabitCardPlaceholder />

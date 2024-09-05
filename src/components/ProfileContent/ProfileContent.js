@@ -9,6 +9,7 @@ export default function ProfileContent({
   tags,
   completionRates,
   cumulativeCompletionRate,
+  friendDetails,
 }) {
   return (
     <div className={styles.container}>
@@ -23,6 +24,7 @@ export default function ProfileContent({
             habits={habits}
             completionRates={completionRates}
             cumulativeCompletionRate={cumulativeCompletionRate}
+            friendDetails={friendDetails}
           />
         </div>
         <div className={styles.contentItem}>

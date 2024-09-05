@@ -3,30 +3,18 @@
 import React, { useEffect, useState } from 'react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { AnalyticsContext } from '../AnalyticsProvider';
-import { fetchFriendsDetails } from '../../app/lib/actions';
 import styles from './FriendsList.module.css';
 import './styles.css';
 
 function FriendsList() {
-  const { user } = React.useContext(AnalyticsContext);
-  const [friendsDetails, setFriendsDetails] = useState([]);
-  useEffect(() => {
-    async function loadFriendsDetails() {
-      if (user.friends && user.friends.length > 0) {
-        const details = await fetchFriendsDetails(user.friends);
-        setFriendsDetails(details);
-      }
-    }
-
-    loadFriendsDetails();
-  }, [user.friends]);
+  const { user, friendDetails } = React.useContext(AnalyticsContext);
   const todayDateOnly = new Date().toISOString().split('T')[0];
 
   return (
     <ScrollArea.Root className='ScrollAreaRootFriends'>
       <ScrollArea.Viewport className='ScrollAreaViewportFriends'>
         <ul className={styles.friendsList}>
-          {friendsDetails.map((friend, index) => (
+          {friendDetails.map((friend, index) => (
             <li key={index} className={styles.friendItem}>
               <p className={styles.friendEmail}>{friend.email}</p>
               <p className={styles.friendCompleted}>

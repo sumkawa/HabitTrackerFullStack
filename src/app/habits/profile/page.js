@@ -4,6 +4,7 @@ import {
   fetchHabits,
   fetchTags,
   createUser,
+  fetchFriendsDetails
 } from '@/app/lib/data';
 import { getSession } from '@auth0/nextjs-auth0';
 import ProfileContent from '@/components/ProfileContent';
@@ -35,15 +36,18 @@ export default async function Profile() {
 
   const habits = await fetchHabits(dbUser.uuid);
   const tags = await fetchTags(dbUser.uuid);
-
+  const friendDetails = await fetchFriendsDetails(dbUser.friends);
   const newHabits = habits.map((habit) => ({ ...habit }));
 
   let totalExpected = 0;
   let totalCompleted = 0;
 
   function calculateExpectedDays(habit) {
+    console.log(habit)
     const startDate = new Date(habit.date_started);
     const endDate = new Date();
+    console.log("start date: ", startDate);
+    console.log("end date: ", endDate);
     let expectedDays = 0;
 
     for (let d = startDate; d <= endDate; d.setDate(d.getDate() + 1)) {
@@ -90,6 +94,7 @@ export default async function Profile() {
   const cumulativeCompletionRate =
     totalExpected > 0 ? (totalCompleted / totalExpected) * 100 : 0;
 
+  
   return (
     <main>
       <ProfileContent
@@ -99,6 +104,7 @@ export default async function Profile() {
         tags={tags}
         completionRates={habitCompletionRates}
         cumulativeCompletionRate={cumulativeCompletionRate}
+        friendDetails = {friendDetails}
       />
       <ToastShelf />
     </main>

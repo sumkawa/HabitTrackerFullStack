@@ -1,3 +1,4 @@
+'use server'
 import { sql } from '@vercel/postgres';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -125,4 +126,27 @@ export async function fetchTags(userId) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch tags.');
   }
+}
+export async function fetchFriendsDetails(friendUuids) {
+  const friendsDetails = [];
+
+  for (const uuid of friendUuids) {
+    const result = await sql`
+      SELECT email, completed_today, uuid
+      FROM users
+      WHERE uuid = ${uuid}
+      LIMIT 1
+    `;
+
+    if (result.rows.length > 0) {
+      const friend = result.rows[0];
+      friendsDetails.push({
+        uuid: friend.uuid,
+        email: friend.email,
+        completed_today: friend.completed_today || {},
+      });
+    }
+  }
+
+  return friendsDetails;
 }

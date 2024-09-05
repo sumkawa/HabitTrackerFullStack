@@ -43,6 +43,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.25.1",
     "eslint": "^8.41.0",
-    "eslint-config-next": "^14.2.5"
+    "eslint-config-next": "^14.2.5",
+    "madge": "^8.0.0"
   }
 }

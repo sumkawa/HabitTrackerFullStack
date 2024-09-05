@@ -12,10 +12,11 @@ function AnalyticsProvider({
   habits,
   completionRates,
   cumulativeCompletionRate,
+  friendDetails,
 }) {
   return (
     <AnalyticsContext.Provider
-      value={{ user, habits, completionRates, cumulativeCompletionRate }}
+      value={{ user, habits, completionRates, cumulativeCompletionRate, friendDetails }}
     >
       <div className={styles.analyticsProviderContainer}>
         <div className={styles.analyticsCardContainer}>

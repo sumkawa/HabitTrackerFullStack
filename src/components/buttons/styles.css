@@ -60,6 +60,3 @@
   background-color: var(--color-text);
   color: var(--color-background);
 }
-.nav-bar__buttons {
-  font-family: 'Nanum Gothic Coding', monospace;
-}
