@@ -1,10 +1,10 @@
-'use client';
-import React from 'react';
-import { AllHabitContext } from '../AllHabitsProvider';
-import AllHabitCard from '../AllHabitCard';
+"use client";
+import React from "react";
+import { AllHabitContext } from "../AllHabitsProvider";
+import AllHabitCard from "../AllHabitCard";
 
-import styles from './dashboard.module.css';
-import './styles.css';
+import styles from "./dashboard.module.css";
+
 function AllHabitsDashboard({ isAll }) {
   const [collapsibleOpen, setCollapsibleOpen] = React.useState(false);
   const { habits, tags, user, checked, setChecked } =
@@ -12,13 +12,13 @@ function AllHabitsDashboard({ isAll }) {
 
   const getTodayInUserTimezone = (timezone) => {
     const date = new Date();
-    const localeDate = date.toLocaleString('en-US', { timeZone: timezone });
+    const localeDate = date.toLocaleString("en-US", { timeZone: timezone });
     const localDate = new Date(localeDate);
     return localDate;
   };
 
   const today = getTodayInUserTimezone(user.timezone);
-  const weekday = today.toLocaleString('en-US', { weekday: 'long' });
+  const weekday = today.toLocaleString("en-US", { weekday: "long" });
 
   const habitsToday = habits
     .filter((habit) => habit.days_of_week.includes(weekday))
@@ -36,7 +36,7 @@ function AllHabitsDashboard({ isAll }) {
     <div className={styles.dashboardContainer}>
       <div className={styles.todaysHabits}>
         <h2 className={styles.sectionTitle}>
-          {isAll ? 'All Habits' : "Today's Habits"}
+          {isAll ? "All Habits" : "Today's Habits"}
         </h2>
         {habitsToday.length === 0 ? (
           <p>No habits scheduled for today.</p>
