@@ -1,9 +1,7 @@
 'use client';
 import React from 'react';
-import Link from 'next/link';
 import { AllHabitContext } from '../AllHabitsProvider';
 import AllHabitCard from '../AllHabitCard';
-import * as ScrollArea from '@radix-ui/react-scroll-area';
 
 import styles from './dashboard.module.css';
 import './styles.css';
