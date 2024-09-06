@@ -1,8 +1,8 @@
-'use client';
-import React, { useEffect, useState, useCallback, useRef } from 'react';
-import HabitPopover from '../HabitPopover';
-import Dashboard from '../Dashboard';
-import './styles.css';
+"use client";
+import React, { useEffect, useState, useCallback, useRef } from "react";
+import HabitPopover from "../HabitPopover";
+import Dashboard from "../Dashboard";
+import "./styles.css";
 
 export const HabitContext = React.createContext();
 
@@ -15,11 +15,11 @@ function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
     }
 
     const getTodayInUserTimezone = (timezone) => {
-      const date = new Date().toLocaleString('en-US', { timeZone: timezone });
+      const date = new Date().toLocaleString("en-US", { timeZone: timezone });
       const localDate = new Date(date);
       return `${localDate.getFullYear()}-${String(
         localDate.getMonth() + 1
-      ).padStart(2, '0')}-${String(localDate.getDate()).padStart(2, '0')}`;
+      ).padStart(2, "0")}-${String(localDate.getDate()).padStart(2, "0")}`;
     };
 
     const today = getTodayInUserTimezone(user.timezone);
@@ -29,7 +29,7 @@ function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
       const habitDate = new Date(habit.last_day_logged);
       const habitLastDayLogged = `${habitDate.getFullYear()}-${String(
         habitDate.getMonth() + 1
-      ).padStart(2, '0')}-${String(habitDate.getDate()).padStart(2, '0')}`;
+      ).padStart(2, "0")}-${String(habitDate.getDate()).padStart(2, "0")}`;
 
       initialCheckBoxes[habit.uuid] = habitLastDayLogged === today;
     });
@@ -57,8 +57,8 @@ function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
         completionRates,
       }}
     >
-      <div className='habitsContainer'>
-        <span className='add-habit'>
+      <div className="habitsContainer">
+        <span className="add-habit">
           <HabitPopover />
         </span>
         <Dashboard isAll={isAll} />

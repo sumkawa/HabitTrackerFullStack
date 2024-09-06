@@ -9,6 +9,7 @@
   padding: 20px;
   background-color: var(--color-background);
   align-items: center;
+  height: 100%;
 }
 .add-habit {
   display: flex;
