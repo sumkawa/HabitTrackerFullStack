@@ -25,4 +25,4 @@ pnpm run build
 Then run `pnpm dev` and open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 **Note: Project won't work since .env file is omitted & api keys for production, db, etc. aren't available.**
-In order for it to work you'll have to add a .env with the following postgres api keys & passwords.
+In order for it to work you'll have to add a .env with the appropriate postgres & OAuth env vars.
