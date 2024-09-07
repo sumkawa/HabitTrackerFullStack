@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 import {
   fetchUserByEmail,
   fetchHabits,
   fetchTags,
   createUser,
-  fetchFriendsDetails
-} from '@/app/lib/data';
-import { getSession } from '@auth0/nextjs-auth0';
-import ProfileContent from '@/components/ProfileContent';
-import ToastShelf from '@/components/ToastShelf';
-import { formatDateToTimeZone } from '../../../helpers/dateUtils'; // Import the utility function
+  fetchFriendsDetails,
+} from "@/app/lib/data";
+import { getSession } from "@auth0/nextjs-auth0";
+import ProfileContent from "@/components/ProfileContent";
+import ToastShelf from "@/components/ToastShelf";
+import { formatDateToTimeZone } from "../../../helpers/dateUtils";
 
 export default async function Profile() {
   const session = await getSession();
@@ -24,7 +24,7 @@ export default async function Profile() {
     const result = await createUser({
       name: session.user.name,
       email: session.user.email,
-      timezone: 'America/Los_Angeles',
+      timezone: "America/Los_Angeles",
     });
 
     if (result.success) {
@@ -43,7 +43,7 @@ export default async function Profile() {
   let totalCompleted = 0;
 
   function calculateExpectedDays(habit) {
-    console.log(habit)
+    console.log(habit);
     const startDate = new Date(habit.date_started);
     const endDate = new Date();
     console.log("start date: ", startDate);
@@ -52,8 +52,10 @@ export default async function Profile() {
 
     for (let d = startDate; d <= endDate; d.setDate(d.getDate() + 1)) {
       const dayOfWeek = formatDateToTimeZone(d, dbUser.timezone, {
-        weekday: 'long',
+        weekday: "long",
       });
+      console.log("day: ", d);
+      console.log("dayofWeek: ", dayOfWeek);
       if (habit.days_of_week.includes(dayOfWeek)) {
         expectedDays++;
       }
@@ -63,7 +65,6 @@ export default async function Profile() {
   }
 
   function calculateCompletedDays(habit) {
-    // Ensure dates_repeated exists and is an array
     if (!habit.dates_repeated || habit.dates_repeated.length === 0) {
       return 0;
     }
@@ -71,7 +72,7 @@ export default async function Profile() {
     return habit.dates_repeated.filter((date) => {
       const completedDate = formatDateToTimeZone(date.date, dbUser.timezone);
       const dayOfWeek = formatDateToTimeZone(completedDate, dbUser.timezone, {
-        weekday: 'long',
+        weekday: "long",
       });
       return habit.days_of_week.includes(dayOfWeek);
     }).length;
@@ -91,10 +92,11 @@ export default async function Profile() {
     };
   });
 
+  console.log(habitCompletionRates);
+
   const cumulativeCompletionRate =
     totalExpected > 0 ? (totalCompleted / totalExpected) * 100 : 0;
 
-  
   return (
     <main>
       <ProfileContent
@@ -104,7 +106,7 @@ export default async function Profile() {
         tags={tags}
         completionRates={habitCompletionRates}
         cumulativeCompletionRate={cumulativeCompletionRate}
-        friendDetails = {friendDetails}
+        friendDetails={friendDetails}
       />
       <ToastShelf />
     </main>

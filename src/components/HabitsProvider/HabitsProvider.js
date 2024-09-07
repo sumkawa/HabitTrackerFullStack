@@ -8,10 +8,10 @@ export const HabitContext = React.createContext();
 
 function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
   const [checked, setChecked] = useState({});
-  const isInitialized = useRef(false); // Ref to track if state has been initialized
+  const isInitialized = useRef(false);
   useEffect(() => {
     if (isInitialized.current) {
-      return; // Skip re-initialization
+      return;
     }
 
     const getTodayInUserTimezone = (timezone) => {
@@ -35,10 +35,9 @@ function HabitsProvider({ habits, tags, user, completionRates, isAll }) {
     });
 
     setChecked(initialCheckBoxes);
-    isInitialized.current = true; // Mark as initialized
+    isInitialized.current = true;
   }, [habits, user.timezone]);
 
-  // Function to update the checked state and log the change
   const updateChecked = useCallback(
     (newState) => {
       setChecked(newState);

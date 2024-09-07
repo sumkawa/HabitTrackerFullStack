@@ -1,7 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-![dashboard](https://github.com/user-attachments/assets/a55b0232-970f-4947-bec1-c8139f0237de)
-[Screenshot of Habit Tracking App Dashboard](https://github.com/user-attachments/assets/a55b0232-970f-4947-bec1-c8139f0237de)
+![dashboard](/public/dashboard.png)
+[Screenshot of Habit Tracking App Dashboard](/public/dashboard.png)
 
 ## About
 
@@ -14,12 +14,14 @@ Currently working on more advanced data visualizations utilizing correlation mat
 ## Getting Started
 
 First, download dependencies & build next:
+
 ```
 nvm use
 
 pnpm i
 pnpm run build
 ```
+
 Then run `pnpm dev` and open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 **Note: Project won't work since .env file is omitted & api keys for production, db, etc. aren't available.**
