@@ -11,21 +11,17 @@
   position: relative;
   display: inline;
   padding: 1rem 2rem;
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: 0.75fr 1fr;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 40px;
 }
 
 .title {
-  --on-background: #f2f2f2;
-  background-image: linear-gradient(
-    to bottom,
-    var(--on-background) 50%,
-    transparent
-  );
   letter-spacing: -1px;
-  text-shadow: 0 5px 15px var(--hero-text-shadow),
-    0 -5px 15px rgba(14, 176, 197, 0.3), 0 -5px 25px rgba(255, 255, 255, 0.3);
-  -webkit-text-fill-color: var(--text-fill-color);
-  -webkit-background-clip: text;
-  background-clip: text;
+  text-shadow: 0 5px 15px var(--hero-text-shadow),;
   font-size: 64px;
   line-height: 72px;
   position: relative;
@@ -36,5 +32,57 @@
   color: var(--on-background);
   font-size: 24px;
   line-height: 32px;
-  margin-top: 0.5rem;
+  margin-top: 40px;
+  width: 70%;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+
+.imageContainer {
+  width: 100%;
+  max-width: 100%;
+  justify-content: center;
+  box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.SignUpButton {
+  padding: 10px 20px;
+  outline: none;
+  user-select: none;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+  margin: 12px 0px;
+  background-image: linear-gradient(
+    45deg,
+    hsl(280deg 100% 52%) 0%,
+    hsl(286deg 100% 48%) 11%,
+    hsl(291deg 100% 47%) 22%,
+    hsl(296deg 100% 45%) 33%,
+    hsl(300deg 100% 44%) 44%,
+    hsl(305deg 100% 45%) 56%,
+    hsl(308deg 100% 47%) 67%,
+    hsl(312deg 100% 48%) 78%,
+    hsl(314deg 100% 49%) 89%,
+    hsl(317deg 100% 50%) 100%
+  );
+}
+.SignUpButton:hover {
+  background-color: #f7f7f7;
+  color: black;
+  background-image: url('https://www.transparenttextures.com/patterns/bright-squares.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
