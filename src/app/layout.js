@@ -1,5 +1,4 @@
 import React from "react";
-import DarkLightToggle from "@/components/DarkLightToggle";
 import "./styles.css";
 import MainNavBar from "@/components/MainNavBar";
 import { cookies } from "next/headers";

@@ -43,19 +43,18 @@ export default async function Profile() {
   let totalCompleted = 0;
 
   function calculateExpectedDays(habit) {
-    console.log(habit);
     const startDate = new Date(habit.date_started);
     const endDate = new Date();
-    console.log("start date: ", startDate);
-    console.log("end date: ", endDate);
+    startDate.setHours(0, 0, 0, 0);
+    endDate.setHours(0, 0, 0, 0);
+
     let expectedDays = 0;
 
     for (let d = startDate; d <= endDate; d.setDate(d.getDate() + 1)) {
       const dayOfWeek = formatDateToTimeZone(d, dbUser.timezone, {
         weekday: "long",
       });
-      console.log("day: ", d);
-      console.log("dayofWeek: ", dayOfWeek);
+
       if (habit.days_of_week.includes(dayOfWeek)) {
         expectedDays++;
       }
@@ -91,8 +90,6 @@ export default async function Profile() {
       completionRate: completionRate.toFixed(2),
     };
   });
-
-  console.log(habitCompletionRates);
 
   const cumulativeCompletionRate =
     totalExpected > 0 ? (totalCompleted / totalExpected) * 100 : 0;

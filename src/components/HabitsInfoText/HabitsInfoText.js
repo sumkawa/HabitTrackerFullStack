@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import React from "react";
 import styles from "./styles.module.css";
 import Image from "next/image";
-import { SignupButton } from "../buttons/signup-button";
 
 const HabitsInfoText = () => {
   return (
@@ -39,7 +38,7 @@ const HabitsInfoText = () => {
           transition={{ duration: 1, delay: 0.5 }}
         >
           <a href="/api/auth/signup" className={styles.SignUpButton}>
-            Try For Free
+            Sign Up
           </a>
         </motion.div>
       </div>
