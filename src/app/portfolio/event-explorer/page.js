@@ -17,7 +17,7 @@ export default function EventExplorer() {
         </p>
         <div className={styles["video-container"]}>
           <video className={styles.video} autoPlay muted loop>
-            <source src="/livedemo.mp4" type="video/mp4" />
+            <source src="/homepage.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -36,7 +36,7 @@ export default function EventExplorer() {
         </p>
         <div className={styles["video-container"]}>
           <video className={styles.video} autoPlay muted loop>
-            <source src="/homepage.mp4" type="video/mp4" />
+            <source src="/livedemo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -55,7 +55,7 @@ export default function EventExplorer() {
         </p>
         <div className={styles["video-container"]}>
           <video className={styles.video} autoPlay muted loop>
-            <source src="/altitudetransformation.mp4" type="video/mp4" />
+            <source src="/bezier.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

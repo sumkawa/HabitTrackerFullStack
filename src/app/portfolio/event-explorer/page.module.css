@@ -28,18 +28,17 @@
   }
   
   .video-container {
-    width: 85%; /* Container width */
-    overflow: hidden; /* Hide the overflow to crop the video */
-    margin: 0 auto; /* Center the container */
+    width: 85%;
+    overflow: hidden;
+    margin: 0 auto;
     display: block;
     margin-bottom: 2rem;
     margin-top: 2rem;
   }
   
   .video {
-    width: 100%; /* Ensure the video takes the full width of the container */
+    width: 100%;
     height: auto;
-    object-fit: cover; /* Keep the aspect ratio */
-    transform: translateX(+3%); /* Crop 10% from the right side */
+    object-fit: cover;
   }
   
