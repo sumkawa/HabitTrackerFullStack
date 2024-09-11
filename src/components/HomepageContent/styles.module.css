@@ -1,0 +1,37 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 6rem;
+    scrollbar-color: var(--color-border) var(--color-text);
+    scrollbar-width: thin;
+  }
+  .mainDescription {
+    display: flex;
+    flex-direction: column;
+  }
+  .span {
+    font-size: 2rem;
+    font-weight: normal;
+  }
+  .heroText {
+    text-align: left;
+    letter-spacing: -2px;
+    text-shadow: 0 5px 10px #0057ff26, 0 -5px 10px #ff5a001a,
+      0 -5px 25px #ffffff4d;
+    font-family: Neue Montreal, sans-serif;
+    font-size: 8rem;
+    font-weight: 500;
+    line-height: 90%;
+  }
+  
+  .descriptionText {
+    text-align: left;
+    letter-spacing: -2px;
+    margin-top: 20px;
+    font-family: Neue Montreal, sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  
