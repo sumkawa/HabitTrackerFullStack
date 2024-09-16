@@ -10,7 +10,11 @@ import MyProfileDropdown from "../MyProfileDropdown";
 const NavBarButtons = () => {
   const pathname = usePathname();
   const { user, isLoading } = useUser();
-  if (pathname === "/" || pathname === "/portfolio") {
+  if (
+    pathname === "/" ||
+    pathname === "/portfolio" ||
+    pathname === "/portfolio/event-explorer"
+  ) {
     return;
   }
   if (isLoading) {
