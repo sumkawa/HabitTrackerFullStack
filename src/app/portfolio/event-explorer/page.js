@@ -28,7 +28,7 @@ export default function EventExplorer() {
       </section>
 
       <section className={styles.section}>
-        <h1 className={styles.title}>Alpha Version</h1>
+        <h1 className={styles.title}>Alpha Version (Before)</h1>
         <p className={styles.description}>
           As part of my time at AuroraX I added several capabilities to the
           Event Explorer to make it a product that physicists would love to use.
