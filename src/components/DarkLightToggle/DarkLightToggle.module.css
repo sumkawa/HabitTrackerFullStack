@@ -14,3 +14,10 @@
 .wrapper:hover {
   color: var(--color-text);
 }
+
+/* Smaller screens (530px and below) */
+@media screen and (max-width: 530px) {
+  .wrapper {
+    display: none;
+  }
+}

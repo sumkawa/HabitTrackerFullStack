@@ -308,3 +308,50 @@ p {
   align-items: center;
   margin: 0;
 }
+/* Smaller screens (530px and below) */
+@media screen and (max-width: 530px) {
+  .navText {
+    font-size: 1.2rem; /* Smaller font size for nav items */
+  }
+
+  .NavigationMenuTrigger,
+  .NavigationMenuLink {
+    font-size: 1rem; /* Adjust font size for navigation links */
+    padding: 6px 10px; /* Adjust padding for compact layout */
+  }
+
+  .SignUpButton {
+    font-size: 1rem; /* Adjust button font size */
+    padding: 6px 20px; /* Adjust button padding */
+  }
+
+  .ListItemHeading {
+    font-size: 16px; /* Smaller font size for list headings */
+  }
+
+  .ListItemText {
+    font-size: 12px; /* Smaller font size for list text */
+  }
+
+  .CalloutHeading {
+    font-size: 16px; /* Reduce size for callout headings */
+  }
+
+  .CalloutText {
+    font-size: 12px; /* Reduce size for callout text */
+  }
+
+  .toggleAndAuthButtons {
+    flex-direction: column; /* Stack toggle and buttons vertically for smaller screens */
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .NavigationMenuRoot {
+    padding: 8px 10px; /* Reduce padding for a tighter layout */
+  }
+
+  .NavigationMenuList {
+    padding: 2px; /* Reduce padding between navigation items */
+  }
+}

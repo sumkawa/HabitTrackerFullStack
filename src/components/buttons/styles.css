@@ -60,3 +60,41 @@
   background-color: var(--color-text);
   color: var(--color-background);
 }
+/* Smaller screens (530px and below) */
+@media screen and (max-width: 530px) and (min-width: 338px) {
+  .button__sign-up,
+  .button__logout,
+  .button__login {
+    font-size: 1rem; /* Reduce font size */
+    padding: 6px 10px; /* Reduce padding */
+    border-radius: 30px; /* Adjust border radius for rounded buttons */
+  }
+
+  .button__logout,
+  .button__login {
+    border-radius: 30px; /* Ensure consistent styling across buttons */
+  }
+
+  .button__sign-up {
+    margin: 8px; /* Reduce margin for tighter layout */
+  }
+}
+
+@media screen and (max-width: 337px) {
+  .button__sign-up,
+  .button__logout,
+  .button__login {
+    font-size: 1rem; /* Reduce font size */
+    padding: 6px 10px; /* Reduce padding */
+    border-radius: 30px; /* Adjust border radius for rounded buttons */
+  }
+
+  .button__logout,
+  .button__login {
+    border-radius: 30px; /* Ensure consistent styling across buttons */
+  }
+
+  .button__sign-up {
+    display: none;
+  }
+}
